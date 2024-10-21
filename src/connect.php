@@ -47,8 +47,9 @@ $sql = "SELECT * FROM users WHERE email = '$email'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // Jika email sudah ada
-    echo "Email sudah digunakan, silakan gunakan email lain.";
+    // Jika email sudah ada, redirect dengan pesan error
+    header('Location: signup.html?error=email_exists');
+    exit();
 } else {
 
 // Validasi password
@@ -68,7 +69,9 @@ if ($password === $conpassword) {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 } else {
-    echo "Password tidak cocok!";
+    // Jika password tidak cocok, redirect dengan pesan error
+    header('Location: signup.html?error=password_mismatch');
+    exit();
 }
 }
 

@@ -16,6 +16,15 @@
 
 
   <div class="container">
+   <!-- Pop-up error -->
+   <div id="error-popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; background-color: white; color: black; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); width: 300px; text-align: center; z-index: 2;">
+      <i id="error-icon" class="fas fa-times-circle" style="color: red; font-size: 40px; margin-bottom: 10px;"></i>
+      <p id="error-message" style="font-size: 16px; margin-bottom: 15px;"></p>
+      <button id="close-popup" style="background-color: #00aaff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">OK</button>
+  </div>
+
+  <!-- Overlay -->
+  <div id="page-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
    <div class="overlay">
     <div class="header">
     </div>
@@ -55,5 +64,60 @@
  </a>
  </div>
   </div>
+  <script>
+   // Fungsi untuk menampilkan pop-up
+   function showPopup(message) {
+    const popup = document.getElementById('error-popup');
+    const overlay = document.getElementById('page-overlay');
+    const messageElement = document.getElementById('error-message');
+    const loginBtn = document.querySelector('.nav-buttons .btn:nth-child(1)'); // Tombol Login
+   const signupBtn = document.querySelector('.nav-buttons .btn-signup'); // Tombol Sign Up
+
+    // Set pesan di dalam pop-up
+    messageElement.textContent = message;
+
+    // Tampilkan pop-up dan overlay
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+
+    // Tambahkan class disabled ke tombol untuk meredupkan dan menonaktifkan
+    loginBtn.classList.add('disabled');
+    signupBtn.classList.add('disabled');
+
+    // Disable klik pada elemen lain selain pop-up
+    overlay.style.pointerEvents = 'auto'; // Overlay yang bisa menerima klik
+    document.body.style.pointerEvents = 'none'; // Disable pointer di seluruh body
+    popup.style.pointerEvents = 'auto'; // Pop-up masih bisa diklik
+
+    // Tambahkan event listener untuk menutup pop-up
+    document.getElementById('close-popup').addEventListener('click', function() {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+        
+        // Hapus class disabled setelah pop-up ditutup
+        loginBtn.classList.remove('disabled');
+        signupBtn.classList.remove('disabled');
+
+        // Enable kembali klik pada elemen lain
+        document.body.style.pointerEvents = 'auto'; 
+    });
+}
+
+
+
+   // Cek apakah ada pesan error dari URL
+   const urlParams = new URLSearchParams(window.location.search);
+   const error = urlParams.get('error');
+
+   if (error) {
+       // Menampilkan pop-up berdasarkan jenis error
+       if (error === "email_exists") {
+           showPopup("Email sudah digunakan, silakan gunakan email yang lain!");
+       } else if (error === "password_mismatch") {
+           showPopup("Password tidak cocok!");
+       }
+   }
+</script>
+
  </body>
 </html>

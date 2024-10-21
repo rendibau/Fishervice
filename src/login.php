@@ -35,12 +35,13 @@ if ($result->num_rows > 0) {
         exit();
     } else {
         // Password salah
-        echo "Password salah!";
+        $error = "wrong_password";
     }
 } else {
     // Email tidak ditemukan
-    echo "Pengguna dengan email ini tidak ditemukan!";
+    $error = "email_not_found";
 }
-
+// Redirect kembali ke halaman login dengan pesan error
+header("Location: signin.html?error=" . $error);
 $conn->close();
 ?>
