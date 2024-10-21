@@ -1,0 +1,338 @@
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #f5f7fb;
+}
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    position: fixed;
+    left: -20px; /* Shift the sidebar to the left */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content horizontally */
+}
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center; /* Center the text */
+    display: flex;
+    align-items: center; /* Center vertically */
+}
+.sidebar h2 img {
+    margin-right: 10px; /* Space between logo and text */
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%; /* Ensure the ul takes the full width */
+    text-align: left; /* Align text to the left */
+    padding-left: 60px; /* Shift the ul to the right */
+}
+.sidebar ul li {
+    margin-bottom: 20px;
+}
+/* Efek hover pada item sidebar */
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px; /* More rounded corners */
+    width: 180px; /* Reduce the width of the box */
+    transition: background-color 0.3s, transform 0.3s; /* Tambahkan transisi */
+}
+.sidebar ul li a:hover {
+    background-color: rgba(41, 182, 246, 0.2);
+    transform: scale(1.05); /* Animasi memperbesar */
+}
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+.sidebar ul li a.active {
+    background-color: rgba(41, 182, 246);
+    color: #fff;
+}
+.main-content {
+    margin-left: 270px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+.main-content video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.4); /* Add semi-transparent background color */
+    padding: 20px; /* Add padding */
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Add box shadow */
+    color: #333; /* Change text color to dark for better contrast */
+}
+.header h1 {
+    font-size: 24px;
+}
+.header .buttons {
+    display: flex;
+    gap: 10px;
+}
+.header .buttons button {
+    padding: 10px 20px;
+    border: 1px solid #ddddddca;
+    border-radius: 20px; /* More rounded corners */
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Tambahkan transisi */
+}
+.header .buttons button:hover {
+    background-color: rgba(41, 182, 246, 0.2);
+    transform: scale(1.05); /* Animasi memperbesar */
+}
+.why-choose-us {
+    background: url('https://placehold.co/600x400') no-repeat center center; /* Add background image */
+    background-size: cover; /* Cover the entire div */
+    padding: 20px;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff; /* Change text color to white for better contrast */
+}
+.why-choose-us h2 {
+    font-size: 24px;
+    margin: 0;
+}
+.why-choose-us p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+.cards {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px; /* Slide the boxes down */
+}
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex: 1;
+    text-align: center;
+}
+.card i {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.card h3 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+.card p {
+    margin: 0;
+    color: #888;
+}
+.card .change {
+    margin-top: 10px;
+    font-size: 14px;
+}
+.card .change.positive {
+    color: #28a745;
+}
+.card .change.negative {
+    color: #dc3545;
+}
+.footer {
+    background-color: rgba(255, 255, 255, 0.4); /* Add semi-transparent background color */
+    padding: 20px;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    color: #333; /* Change text color to dark for better contrast */
+}
+.footer h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.footer p {
+    margin: 5px 0;
+}
+.our-team {
+    background-color: rgba(255, 255, 255, 0.4); /* Add semi-transparent background color */
+    padding: 20px;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    color: #333; /* Change text color to dark for better contrast */
+}
+.our-team h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.why-choose-us-box {
+    background-color: rgba(255, 255, 255, 0.4); /* Add semi-transparent background color */
+    padding: 20px;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    color: #333; /* Change text color to dark for better contrast */
+}
+.why-choose-us-box h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.why-choose-us-cards {
+    display: flex;
+    gap: 20px;
+}
+.why-choose-us-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    flex: 1;
+    transition: background-color 0.3s, transform 0.3s; /* Tambahkan transisi */
+}
+.why-choose-us-card:hover {
+    background-color: white;
+    transform: scale(1.05); /* Animasi memperbesar */
+}
+.why-choose-us-card i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: rgba(41, 182, 246); /* Icon color */
+}
+.why-choose-us-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+.why-choose-us-card p {
+    font-size: 14px;
+    color: #555;
+}
+.our-product {
+    background-color: rgba(255, 255, 255, 0.4); /* Add semi-transparent background color */
+    padding: 20px;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    color: #333; /* Change text color to dark for better contrast */
+}
+.our-product h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.information-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+    grid-template-rows: repeat(2, auto); /* 2 baris */
+    gap: 20px; /* Jarak antar box */
+}
+.product-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: justify;
+    flex: 1;
+    transition: background-color 0.3s, transform 0.3s; /* Tambahkan transisi */
+}
+.product-card:hover {
+    background-color: white;
+    transform: scale(1.05); /* Animasi memperbesar */
+}
+.product-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 10px; /* Rounded corners for images */
+}
+.product-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+.product-card p {
+    font-size: 14px;
+    color: #555;
+}
+.box {
+    background: url('https://gcdnb.pbrd.co/images/mRML6upOlgIm.png?o=1') no-repeat center center; /* Add background image */
+    background-size: cover; /* Cover the entire div */
+    padding: 20px;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color: #fff; /* Change text color to white for better contrast */
+    margin-top: 20px;
+}
+.box h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.box p {
+    font-size: 16px;
+}
+.card-container {
+    display: flex;
+    gap: 20px;
+}
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    transition: background-color 0.3s, transform 0.3s; /* Tambahkan transisi */
+}
+.card:hover {
+    background-color: white;
+    transform: scale(1.05); /* Animasi memperbesar */
+}
+.card img {
+    border-radius: 50%;
+    border: 3px solid rgba(129, 212, 250, 0.762);
+    width: 100px;
+    height: 100px;
+}
+.card h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+.card p {
+    font-size: 14px;
+    color: #777;
+    margin: 10px 0;
+}
+.card h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+.card .social-icons {
+    margin-top: 10px;
+}
+.card .social-icons a {
+    color: #333;
+    margin: 0 5px;
+    text-decoration: none;
+    font-size: 18px;
+}

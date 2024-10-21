@@ -1,0 +1,253 @@
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: #f5f7fb;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            position: fixed;
+            left: -20px; /* Shift the sidebar to the left */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the content horizontally */
+        }
+        .sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center; /* Center the text */
+            display: flex;
+            align-items: center; /* Center vertically */
+        }
+        .sidebar h2 img {
+            margin-right: 10px; /* Space between logo and text */
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            width: 100%; /* Ensure the ul takes the full width */
+            text-align: left; /* Align text to the left */
+            padding-left: 60px; /* Shift the ul to the right */
+        }
+        .sidebar ul li {
+            margin-bottom: 20px;
+        }
+        /* Efek hover pada item sidebar */
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 20px; /* More rounded corners */
+            width: 180px; /* Reduce the width of the box */
+            transition: background-color 0.3s, transform 0.3s; /* Tambahkan transisi */
+        }
+        .sidebar ul li a:hover {
+            background-color: rgba(41, 182, 246, 0.2);
+            transform: scale(1.05); /* Animasi memperbesar */
+        }
+        .sidebar ul li a i {
+            margin-right: 10px;
+        }
+        .sidebar ul li a.active {
+            background-color: rgba(41, 182, 246);
+            color: #fff;
+        }
+
+        /* Efek hover pada tombol logout */
+        .logout {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #f0f0f0;
+            margin-top: auto;
+        }
+        .logout a {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border: 1px solid #f0f0f0;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.3s; /* Tambahkan transisi */
+        }
+        .logout a:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px); /* Animasi mengangkat sedikit */
+        }
+        .logout a i {
+            margin-right: 10px;
+        }
+        .main-content {
+            margin-left: 270px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .main-content video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.4); /* Add semi-transparent background color */
+            padding: 20px; /* Add padding */
+            border-radius: 20px; /* More rounded corners */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Add box shadow */
+            color: #333; /* Change text color to dark for better contrast */
+        }
+        .header h1 {
+            font-size: 24px;
+        }
+        .header .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .header .buttons button {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 20px; /* More rounded corners */
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .header .buttons button:hover {
+            background-color: #f0f0f0;
+        }
+        .analyst-box {
+            background-color: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            color: #333;
+        }
+        .analyst-box h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .analyst-cards {
+            display: flex;
+            gap: 20px;
+        }
+        .analyst-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            flex: 1;
+            transition: background-color 0.3s, transform 0.3s; /* Tambahkan transisi */
+        }
+        .analyst-card:hover {
+            background-color: white;
+            transform: scale(1.05); /* Animasi memperbesar */
+        }
+        .analyst-card i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: rgba(41, 182, 246);
+        }
+        .analyst-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .analyst-card p {
+            font-size: 14px;
+            color: #555;
+        }
+        .our-product {
+            background-color: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            color: #333;
+        }
+        .our-product h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .product-cards {
+            display: flex;
+            gap: 20px;
+        }
+        .product-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            flex: 1;
+            transition: background-color 0.3s, transform 0.3s; /* Tambahkan transisi */
+        }
+        .product-card:hover {
+            background-color: white;
+            transform: scale(1.05); /* Animasi memperbesar */
+        }
+        .product-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        .product-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .product-card p {
+            font-size: 14px;
+            color: #555;
+        }
+        .footer {
+            background-color: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            color: #333;
+        }
+        .footer h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .no-link-style {
+            text-decoration: none !important; /* Hilangkan garis bawah */
+            color: black !important; /* Pastikan warna hitam menimpa gaya default */
+        }
+        
+        .product-card a {
+            color: black !important; /* Ganti warna link dalam .product-card */
+            text-decoration: none !important; /* Hilangkan underline */
+        }
+        
+        .product-card a h3,
+        .product-card a p {
+            color: black !important; /* Pastikan teks di dalam h3 dan p juga hitam */
+        }
+        
+        
+        
+        
+        

@@ -1,0 +1,6 @@
+{
+    "name": "PHP Development",
+    "build": {
+        "dockerfile": "../Dockerfile"
+    }
+}

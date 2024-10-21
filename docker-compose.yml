@@ -1,0 +1,61 @@
+version: '3.9'
+services:
+  php-env:
+    build: .
+    container_name: frontend_app  # Nama container yang spesifik
+    volumes:
+      - ./src:/var/www/html
+    ports:
+     - 8002:80
+
+  mysql_db:
+    image: mysql:latest
+    container_name: user_db # Nama container yang spesifik
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: user_db_admin  # Nama container yang spesifik
+    restart: always
+    ports:
+      - 8001:80
+    environment:
+      - PMA_ARBITRARY=1
+
+  # Container untuk pH sensor
+  ph_sensor:
+    image: php:apache
+    container_name: ph_page  # Nama container yang spesifik
+    volumes:
+      - ./ph_page:/var/www/html
+    ports:
+      - 8004:80
+    environment:
+      - FIRESTORE_PROJECT_ID=your_project_id
+      - FIRESTORE_KEY_FILE=/path/to/your/serviceAccountKey.json
+
+   # Container untuk turbidity sensor
+  turbidity_sensor:
+    image: php:apache
+    container_name: turbidity_page  # Nama container yang spesifik
+    volumes:
+      - ./turbidity_page:/var/www/html
+    ports:
+      - 8005:80
+    environment:
+      - FIRESTORE_PROJECT_ID=your_project_id
+      - FIRESTORE_KEY_FILE=/path/to/your/serviceAccountKey.json
+
+  # Container untuk temperature sensor
+  temperature_sensor:
+    image: php:apache
+    container_name: temperature_page  # Nama container yang spesifik
+    volumes:
+      - ./temperature_page:/var/www/html
+    ports:
+      - 8006:80
+    environment:
+      - FIRESTORE_PROJECT_ID=your_project_id
+      - FIRESTORE_KEY_FILE=/path/to/your/serviceAccountKey.json
