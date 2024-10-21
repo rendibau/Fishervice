@@ -1,43 +1,73 @@
-<!-- index.html -->
-<!DOCTYPE html>
 <html>
-<head>
-  <title>Monitoring Turbidity</title>
+ <head>
+  <title>
+   Fishervice
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="turbidity_page.css">
-</head>
-<body>
-  <header>
-    <h1>Monitoring Turbidity</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Data</a></li>
-        <li><a href="#">Grafik</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section id="grafik">
-      <h2>Grafik Turbidity</h2>
-      <canvas id="grafik-turbidity"></canvas>
-    </section>
-    <section id="data">
-      <h2>Data Turbidity</h2>
-      <table id="tabel-data">
-        <thead>
-          <tr>
-            <th>Tanggal</th>
-            <th>Turbidity</th>
-          </tr>
-        </thead>
-        <tbody id="data-turbidity">
-        </tbody>
-      </table>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2023 Monitoring Turbidity</p>
-  </footer>
-  <script src="turbidity_page.js"></script>
-</body>
+ </head>
+ <body>
+    <div class="main-content">
+        <!-- Ganti background video dari link eksternal ke video lokal -->
+        <video autoplay muted loop>
+            <source src="./background/background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+    </video>
+
+  <div class="content">
+   <div class="header">
+    <h1>
+     <i class="fas fa-arrow-left"></i>
+     <span class="back-text">Back</span>
+     <img alt="Fishervice Logo" src="https://gcdnb.pbrd.co/images/zFDCP4zQaltQ.png?o=1"/>
+     Fishervice
+    </h1>
+    <div class="user">
+     Hi, Pedro Halim
+    </div>
+   </div>
+   <div class="turbidity">
+    <h2>
+     Grafik Turbidity
+    </h2>
+    <div class="cards">
+     <div class="card">
+      <img alt="Turbidity Graph" height="700" src="https://storage.googleapis.com/a1aa/image/cO4GmkfTYXQBSyhN2eHrllpX0VS0u55qiJueenfHFXIHm4DdC.jpg" width="1200"/>
+      <h3>
+        Turbidity saat ini
+       </h3> <p>50 NTU</p>
+     </div>
+    </div>
+   </div>
+   <div class="analyst">
+    <h2>
+     Analyst
+    </h2>
+    <div class="cards">
+     <div class="card">
+      <p>
+        Kekeruhan air yang dianjurkan maksimum 50 NTU
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="footer">
+    <p>
+        <i class="fas fa-envelope">
+        </i>
+        Email: Fishervice4@gmail.com
+       </p>
+       <p>
+        <i class="fas fa-map-marker-alt">
+        </i>
+        Location: Telkom University, Bandung, Jawa Barat
+       </p>
+       <p>
+        <i class="fas fa-phone">
+        </i>
+        Phone: 089520701494 (Muhammad Hasbi Nurhadi)
+       </p>
+  </div>
+ </body>
 </html>

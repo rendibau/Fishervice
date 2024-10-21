@@ -27,30 +27,8 @@ if (!isset($_SESSION['fullname'])) {
             Fishervice
         </h2>
         <ul>
-            <li>
-                <a class="active" href="#result">
-                    <i class="fas fa-chart-line"></i>
-                    Result
-                </a>
-            </li>
-            <li>
-                <a href="#analyst">
-                    <i class="fas fa-chart-pie"></i>
-                    Analyst
-                </a>
-            </li>
-            <li>
-                <a href="#history">
-                    <i class="fas fa-history"></i>
-                    History
-                </a>
-            </li>
-            <li>
-                <a href="#contact">
-                    <i class="fas fa-address-book"></i>
-                    Contact Information
-                </a>
-            </li>
+            <li><a class="active" href="#result"><i class="fas fa-chart-line"></i>Result</a></li>
+            <li><a href="#analyst"><i class="fas fa-chart-pie"></i>Analyst</a></li>
         </ul>
         <div class="logout">
             <a href="logout.php">
@@ -73,7 +51,7 @@ if (!isset($_SESSION['fullname'])) {
                 </span>
             </div>
         </div>
-        
+<section id="result">
         <!-- analyst section -->
         <div id="result" class="analyst-box">
             <h2>Result</h2>
@@ -95,7 +73,8 @@ if (!isset($_SESSION['fullname'])) {
                 </div>
             </div>
         </div>
-
+</section>
+<section id="analyst">
          <!-- Our Product section -->
          <div id="analyst" class="our-product">
             <h2>Analyst</h2>
@@ -131,16 +110,8 @@ if (!isset($_SESSION['fullname'])) {
             <p><i class="fas fa-phone"></i> Phone: 089520701494 (Muhammad Hasbi Nurhadi)</p>
         </div>
     </div>
-    <div class="sidebar">
-        <h2>Fishervice</h2>
-        <ul>
-            <li><a class="active" href="#result"><i class="fas fa-chart-line"></i> Result</a></li>
-            <li><a href="#analyst"><i class="fas fa-chart-pie"></i> Analyst</a></li>
-            <li><a href="#history"><i class="fas fa-history"></i> History</a></li>
-            <li><a href="#contact"><i class="fas fa-address-book"></i> Contact</a></li>
-        </ul>
-    </div>
-
+</section>
+    
     <div class="main-content">
         <!-- Konten halaman utama -->
     </div>
@@ -190,8 +161,29 @@ if (!isset($_SESSION['fullname'])) {
         
         // Tambahkan kelas 'active' ke item yang diklik
         this.classList.add('active');
+         });
     });
-});
+    // JavaScript untuk menambahkan kelas 'active' ke item sidebar yang sesuai saat scroll
+    document.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section');
+        const menuItems = document.querySelectorAll('.sidebar ul li a');
+
+        let currentSection = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 50;
+            if (pageYOffset >= sectionTop) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+
+        menuItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href') === '#' + currentSection) {
+                item.classList.add('active');
+            }
+        });
+    });
 </script>
 </body>
 </html>

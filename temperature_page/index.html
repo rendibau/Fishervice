@@ -1,43 +1,73 @@
-<!-- index.html -->
-<!DOCTYPE html>
 <html>
-<head>
-  <title>Monitoring Temperature</title>
+ <head>
+  <title>
+   Fishervice
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="temperature_page.css">
-</head>
-<body>
-  <header>
-    <h1>Monitoring Temperature</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Data</a></li>
-        <li><a href="#">Grafik</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section id="grafik">
-      <h2>Grafik Temperature</h2>
-      <canvas id="grafik-temperature"></canvas>
-    </section>
-    <section id="data">
-      <h2>Data Temperature</h2>
-      <table id="tabel-data">
-        <thead>
-          <tr>
-            <th>Tanggal</th>
-            <th>Temperature</th>
-          </tr>
-        </thead>
-        <tbody id="data-temperature">
-        </tbody>
-      </table>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2023 Monitoring Temperature</p>
-  </footer>
-  <script src="temperature_page.js"></script>
-</body>
+ </head>
+ <body>
+    <div class="main-content">
+        <!-- Ganti background video dari link eksternal ke video lokal -->
+        <video autoplay muted loop>
+            <source src="./background/background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+    </video>
+
+  <div class="content">
+   <div class="header">
+    <h1>
+     <i class="fas fa-arrow-left"></i>
+     <span class="back-text">Back</span>
+     <img alt="Fishervice Logo" src="https://gcdnb.pbrd.co/images/zFDCP4zQaltQ.png?o=1"/>
+     Fishervice
+    </h1>
+    <div class="user">
+     Hi, Pedro Halim
+    </div>
+   </div>
+   <div class="temperature">
+    <h2>
+     Grafik Temperature
+    </h2>
+    <div class="cards">
+     <div class="card">
+      <img alt="Turbidity Graph" height="700" src="https://storage.googleapis.com/a1aa/image/cO4GmkfTYXQBSyhN2eHrllpX0VS0u55qiJueenfHFXIHm4DdC.jpg" width="1200"/>
+      <h3>
+        Temperature saat ini
+       </h3> <p>5 °</p>
+     </div>
+    </div>
+   </div>
+   <div class="analyst">
+    <h2>
+     Analyst
+    </h2>
+    <div class="cards">
+     <div class="card">
+      <p>
+       The optimal temperature range for the fish is between 26°C and 30°C. Maintaining this temperature range ensures the best growth and health for the fish.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="footer">
+    <p>
+        <i class="fas fa-envelope">
+        </i>
+        Email: Fishervice4@gmail.com
+       </p>
+       <p>
+        <i class="fas fa-map-marker-alt">
+        </i>
+        Location: Telkom University, Bandung, Jawa Barat
+       </p>
+       <p>
+        <i class="fas fa-phone">
+        </i>
+        Phone: 089520701494 (Muhammad Hasbi Nurhadi)
+       </p>
+  </div>
+ </body>
 </html>
