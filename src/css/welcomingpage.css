@@ -336,3 +336,8 @@ body {
     text-decoration: none;
     font-size: 18px;
 }
+
+#cardcontainer {
+    padding-bottom: 50px !important; /* Menambah ruang di dalam container */
+    min-height: 400px !important; /* Mengatur tinggi minimum container */
+}

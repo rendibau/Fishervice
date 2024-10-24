@@ -80,21 +80,21 @@ if (!isset($_SESSION['fullname'])) {
             <h2>Analyst</h2>
             <div class="product-cards">
                 <div class="product-card">
-                    <a href="http://temperature_page:80/index.html" class="no-link-style" style="color: black; text-decoration: none;">
+                    <a href="http://localhost:8006/" class="no-link-style" style="color: black; text-decoration: none;">
                     <img alt="Product 1" height="150" src="https://gcdnb.pbrd.co/images/8O9GGTtZRurR.png?o=1" width="300"/>
                     <h3 style="color: black;">Temperature</h3>
                     <p style="color: black;">Our monitoring tools provide highly accurate data to ensure optimal conditions for fish growth.</p>
                     </a>
                 </div>
                 <div class="product-card">
-                    <a href="./ph_page/index.html" class="no-link-style" style="color: black; text-decoration: none;">
+                    <a href="http://localhost:8004/" class="no-link-style" style="color: black; text-decoration: none;">
                     <img alt="Product 2" height="150" src="https://gcdnb.pbrd.co/images/ADmtwJGKbl9h.png?o=1" width="300"/>
                     <h3 style="color: black;">pH</h3>
                     <p style="color: black;">Monitor your fish pond conditions in real-time to make immediate adjustments as needed.</p>
                     </a>
                 </div>
                 <div class="product-card">
-                    <a href="./turbidity_page/index.html" class="no-link-style" style="color: black; text-decoration: none;">
+                    <a href="http://localhost:8005/" class="no-link-style" style="color: black; text-decoration: none;">
                     <img alt="Product 3" height="150" src="https://gcdnb.pbrd.co/images/KY2XbUTnBj3f.png?o=1" width="300"/>
                     <h3 style="color: black;">Turbidity</h3>
                     <p style="color: black;">Our tools are designed to be user-friendly, making it easy for anyone to monitor their fish pond.</p>
