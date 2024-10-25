@@ -111,3 +111,22 @@ body {
          margin: 5px 0;
          font-size: 16px;
      }
+
+     .back-button {
+        display: inline-flex; /* Menyusun konten di dalam tombol secara horizontal */
+        align-items: center; /* Menyejajarkan ikon dan teks secara vertikal */
+        background-color: #007bff; /* Warna latar belakang tombol */
+        color: white; /* Warna teks */
+        padding: 10px 15px; /* Padding untuk tombol */
+        border: none; /* Menghilangkan border default */
+        border-radius: 5px; /* Sudut yang lebih bulat */
+        text-decoration: none; /* Menghilangkan garis bawah */
+        cursor: pointer; /* Menampilkan kursor pointer saat hover */
+    }
+    
+    .back-button:hover {
+        background-color: #0056b3; /* Warna saat hover */
+    }
+    
+    
+     

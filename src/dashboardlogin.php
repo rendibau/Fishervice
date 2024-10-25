@@ -1,11 +1,11 @@
 <?php
-session_start();
+    session_start();
 
-// Cek apakah pengguna sudah login
-if (!isset($_SESSION['fullname'])) {
-    header('Location: signin.html'); // Jika belum login, redirect ke halaman login
-    exit();
-}
+    // Cek apakah pengguna sudah login
+    if (!isset($_SESSION['fullname'])) {
+        header('Location: signin.html'); // Jika belum login, redirect ke halaman login
+        exit();
+    }
 ?>
 <html lang="en">
 <head>
@@ -80,25 +80,25 @@ if (!isset($_SESSION['fullname'])) {
             <h2>Analyst</h2>
             <div class="product-cards">
                 <div class="product-card">
-                    <a href="http://localhost:8006/" class="no-link-style" style="color: black; text-decoration: none;">
-                    <img alt="Product 1" height="150" src="https://gcdnb.pbrd.co/images/8O9GGTtZRurR.png?o=1" width="300"/>
-                    <h3 style="color: black;">Temperature</h3>
-                    <p style="color: black;">Our monitoring tools provide highly accurate data to ensure optimal conditions for fish growth.</p>
-                    </a>
+                    <button id="sendDataBtn1" class="no-link-style" style="color: black; background: none; border: none; cursor: pointer;">
+                        <img alt="Product 1" height="150" src="https://gcdnb.pbrd.co/images/8O9GGTtZRurR.png?o=1" width="300"/>
+                        <h3 style="color: black;">Temperature</h3>
+                        <p style="color: black;">Our monitoring tools provide highly accurate data to ensure optimal conditions for fish growth.</p>
+                    </button>
                 </div>
                 <div class="product-card">
-                    <a href="http://localhost:8004/" class="no-link-style" style="color: black; text-decoration: none;">
-                    <img alt="Product 2" height="150" src="https://gcdnb.pbrd.co/images/ADmtwJGKbl9h.png?o=1" width="300"/>
-                    <h3 style="color: black;">pH</h3>
-                    <p style="color: black;">Monitor your fish pond conditions in real-time to make immediate adjustments as needed.</p>
-                    </a>
+                    <button id="sendDataBtn2" class="no-link-style" style="color: black; background: none; border: none; cursor: pointer;">
+                        <img alt="Product 2" height="150" src="https://gcdnb.pbrd.co/images/ADmtwJGKbl9h.png?o=1" width="300"/>
+                        <h3 style="color: black;">pH</h3>
+                        <p style="color: black;">Monitor your fish pond conditions in real-time to make immediate adjustments as needed.</p>
+                    </button>
                 </div>
                 <div class="product-card">
-                    <a href="http://localhost:8005/" class="no-link-style" style="color: black; text-decoration: none;">
-                    <img alt="Product 3" height="150" src="https://gcdnb.pbrd.co/images/KY2XbUTnBj3f.png?o=1" width="300"/>
-                    <h3 style="color: black;">Turbidity</h3>
-                    <p style="color: black;">Our tools are designed to be user-friendly, making it easy for anyone to monitor their fish pond.</p>
-                    </a>
+                    <button id="sendDataBtn3" class="no-link-style" style="color: black; background: none; border: none; cursor: pointer;">
+                        <img alt="Product 3" height="150" src="https://gcdnb.pbrd.co/images/KY2XbUTnBj3f.png?o=1" width="300"/>
+                        <h3 style="color: black;">Turbidity</h3>
+                        <p style="color: black;">Our tools are designed to be user-friendly, making it easy for anyone to monitor their fish pond.</p>
+                    </button>
                 </div>
             </div>
         </div>
@@ -184,6 +184,144 @@ if (!isset($_SESSION['fullname'])) {
             }
         });
     });
+// Event listener untuk tombol pertama
+document.getElementById('sendDataBtn1').addEventListener('click', function() {
+    fetch('http://localhost:8006/receive_user_data.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            'fullname': '<?php echo $_SESSION['fullname']; ?>',
+            'email': '<?php echo $_SESSION['email']; ?>'
+        })
+    })
+    .then(response => {
+        console.log("Response Status:", response.status);
+        console.log("Response Headers:", response.headers);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.text(); // Mengambil respons sebagai teks
+    })
+    .then(text => {
+        console.log("Raw response:", text); // Tambahkan log ini
+        try {
+            const data = JSON.parse(text); // Coba parse respons sebagai JSON
+            console.log("Received data:", data);
+            if (data.status === 'success') {
+                window.location.href = 'http://localhost:8006/index.php'; // Arahkan ke halaman utama
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+            alert('Ada kesalahan saat memproses respons dari server.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Ada kesalahan saat mengirim data. Silakan coba lagi.');
+    });
+
+    console.log("Sending data:", {
+        fullname: '<?php echo $_SESSION['fullname']; ?>',
+        email: '<?php echo $_SESSION['email']; ?>'
+    });
+});
+
+// Event listener untuk tombol kedua
+document.getElementById('sendDataBtn2').addEventListener('click', function() {
+    fetch('http://localhost:8004/receive_user_data.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            'fullname': '<?php echo $_SESSION['fullname']; ?>',
+            'email': '<?php echo $_SESSION['email']; ?>'
+        })
+    })
+    .then(response => {
+        console.log("Response Status:", response.status);
+        console.log("Response Headers:", response.headers);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.text(); // Mengambil respons sebagai teks
+    })
+    .then(text => {
+        console.log("Raw response:", text);
+        try {
+            const data = JSON.parse(text);
+            console.log("Received data:", data);
+            if (data.status === 'success') {
+                window.location.href = 'http://localhost:8004/index.php'; // Arahkan ke halaman utama
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+            alert('Ada kesalahan saat memproses respons dari server.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Ada kesalahan saat mengirim data. Silakan coba lagi.');
+    });
+
+    console.log("Sending data:", {
+        fullname: '<?php echo $_SESSION['fullname']; ?>',
+        email: '<?php echo $_SESSION['email']; ?>'
+    });
+});
+
+// Event listener untuk tombol ketiga
+document.getElementById('sendDataBtn3').addEventListener('click', function() {
+    fetch('http://localhost:8005/receive_user_data.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            'fullname': '<?php echo $_SESSION['fullname']; ?>',
+            'email': '<?php echo $_SESSION['email']; ?>'
+        })
+    })
+    .then(response => {
+        console.log("Response Status:", response.status);
+        console.log("Response Headers:", response.headers);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.text(); // Mengambil respons sebagai teks
+    })
+    .then(text => {
+        console.log("Raw response:", text);
+        try {
+            const data = JSON.parse(text);
+            console.log("Received data:", data);
+            if (data.status === 'success') {
+                window.location.href = 'http://localhost:8005/index.php'; // Arahkan ke halaman utama
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+            alert('Ada kesalahan saat memproses respons dari server.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Ada kesalahan saat mengirim data. Silakan coba lagi.');
+    });
+
+    console.log("Sending data:", {
+        fullname: '<?php echo $_SESSION['fullname']; ?>',
+        email: '<?php echo $_SESSION['email']; ?>'
+    });
+});
+
 </script>
 </body>
 </html>

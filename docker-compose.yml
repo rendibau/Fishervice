@@ -5,8 +5,11 @@ services:
     container_name: frontend_app  # Nama container yang spesifik
     volumes:
       - ./src:/var/www/html
+      - session-data:/var/lib/php/sessions
     ports:
-     - 8002:80
+      - 8002:80
+    depends_on:
+      - redis  # Memastikan Redis sudah siap sebelum container ini dijalankan
 
   mysql_db:
     image: mysql:latest
@@ -26,36 +29,53 @@ services:
 
   # Container untuk pH sensor
   ph_sensor:
-    image: php:apache
+    build: .  # Menggunakan Dockerfile Anda
     container_name: ph_page  # Nama container yang spesifik
     volumes:
       - ./ph_page:/var/www/html
+      - session-data:/var/lib/php/sessions
     ports:
       - 8004:80
     environment:
       - FIRESTORE_PROJECT_ID=your_project_id
       - FIRESTORE_KEY_FILE=/path/to/your/serviceAccountKey.json
-
+    depends_on:
+      - redis  # Memastikan Redis sudah siap sebelum container ini dijalankan
+   
    # Container untuk turbidity sensor
   turbidity_sensor:
-    image: php:apache
+    build: .  # Menggunakan Dockerfile Anda
     container_name: turbidity_page  # Nama container yang spesifik
     volumes:
       - ./turbidity_page:/var/www/html
+      - session-data:/var/lib/php/sessions
     ports:
       - 8005:80
     environment:
       - FIRESTORE_PROJECT_ID=your_project_id
       - FIRESTORE_KEY_FILE=/path/to/your/serviceAccountKey.json
-
+    depends_on:
+      - redis  # Memastikan Redis sudah siap sebelum container ini dijalankan
+      
   # Container untuk temperature sensor
   temperature_sensor:
-    image: php:apache
+    build: .  # Menggunakan Dockerfile Anda
     container_name: temperature_page  # Nama container yang spesifik
     volumes:
       - ./temperature_page:/var/www/html
+      - session-data:/var/lib/php/sessions
     ports:
       - 8006:80
     environment:
       - FIRESTORE_PROJECT_ID=your_project_id
       - FIRESTORE_KEY_FILE=/path/to/your/serviceAccountKey.json
+    depends_on:
+      - redis  # Memastikan Redis sudah siap sebelum container ini dijalankan 
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  session-data:

@@ -20,3 +20,9 @@ var pHChart = new Chart(ctx, {
         }
     }
 });
+
+document.getElementById('backButton').addEventListener('click', function() {
+    console.log('Tombol Back diklik'); // Log ini untuk debugging
+    window.location.href = 'http://localhost:8002/dashboardlogin.php'; // URL yang sesuai
+});
+

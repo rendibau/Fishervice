@@ -3,6 +3,9 @@ FROM php:8.0-apache
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
+# Install the Redis extension
+RUN pecl install redis && docker-php-ext-enable redis
+
 # Install the mysqli extension
 RUN docker-php-ext-install mysqli
 
