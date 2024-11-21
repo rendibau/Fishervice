@@ -122,12 +122,12 @@
 
     // Firebase configuration (isi dengan konfigurasi Firebase Anda)
     const firebaseConfig = {
-        apiKey: "AIzaSyAbGSUAOW6UTOGlZa1RB5I_WGTVAH5yyHw",
-        authDomain: "coba-35774.firebaseapp.com",
-        projectId: "coba-35774",
-        storageBucket: "coba-35774.appspot.com",
-        messagingSenderId: "163958562627",
-        appId: "1:163958562627:web:fcc939a487bc09de4a59f6"
+        apiKey: "AIzaSyCHQZyc8WbHVmuRiE0Z-V2icYScgRhjKck",
+        authDomain: "fishervice-result.firebaseapp.com",
+        projectId: "fishervice-result",
+        storageBucket: "fishervice-result.appspot.com",
+        messagingSenderId: "841310454525",
+        appId: "1:841310454525:web:95980a6dfadda9120cf494"
     };
 
     // Initialize Firebase

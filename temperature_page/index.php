@@ -10,9 +10,12 @@ $fullname = $_SESSION['fullname'] ?? 'Guest';
   <title>
    Fishervice
   </title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="temperature_page.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="temperature_page.css">
+    <!-- Firebase SDK for older versions (if not using ES modules) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
  </head>
  <body>
     <div class="main-content">
@@ -42,7 +45,7 @@ $fullname = $_SESSION['fullname'] ?? 'Guest';
     <div class="cards">
      <div class="card">
             <!-- Grafik interaktif -->
-            <canvas id="TemperatureChart" width="400" height="200"></canvas>
+            <canvas id="TempChart" width="400" height="200"></canvas>
         
             <!-- Temperature saat ini -->
             <h3 style="font-size: 32px; font-weight: bold; color: #29b6f6; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px;">
@@ -86,6 +89,156 @@ $fullname = $_SESSION['fullname'] ?? 'Guest';
         Phone: 089520701494 (Muhammad Hasbi Nurhadi)
        </p>
   </div>
-<script src="temperature_page.js"></script>
+<script>
+// Ambil email dari PHP session
+const userEmail = '<?php echo $_SESSION['email']; ?>';
+
+// Konfigurasi Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyCxfE1LX7VLTxtVTCJDPfBKa2kz0INCM8U",
+    authDomain: "temperature-page-4efeb.firebaseapp.com",
+    projectId: "temperature-page-4efeb",
+    storageBucket: "temperature-page-4efeb.firebasestorage.app",
+    messagingSenderId: "208492571853",
+    appId: "1:208492571853:web:29a5424eafd161daedcd84"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Initialize Firestore
+const db = firebase.firestore();
+
+// Array lokal untuk menyimpan data Temp dan timestamp
+let TempData = {
+    labels: [], // Untuk timestamp
+    values: []  // Untuk nilai Temp
+};
+
+// Inisialisasi Chart.js
+const TempChartData = {
+    labels: TempData.labels, // Label timestamp
+    datasets: [{
+        label: 'Nilai Temp',
+        data: TempData.values, // Data Temp
+        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderWidth: 1
+    }]
+};
+
+const ctx = document.getElementById('TempChart').getContext('2d');
+const TempChart = new Chart(ctx, {
+    type: 'line',
+    data: TempChartData,
+    options: {
+        scales: {
+            y: {
+                beginAtZero: false,
+                suggestedMax: 20 // Disesuaikan dengan data
+            }
+        }
+    }
+});
+
+// Fungsi untuk mengonversi timestamp menjadi objek Date
+function parseTimestamp(timestamp) {
+    const parts = timestamp.split('-');
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Month dimulai dari 0 (Januari = 0)
+    const day = parseInt(parts[2], 10);
+    const hours = parseInt(parts[3], 10);
+    const minutes = parseInt(parts[4], 10);
+    const seconds = parseInt(parts[5], 10);
+    
+    return new Date(year, month, day, hours, minutes, seconds);
+}
+
+// Fungsi untuk menambahkan data baru ke chart
+function addDataToChart(timestamp, TempC) {
+    // Cek apakah timestamp sudah ada di grafik
+    if (!TempData.labels.includes(timestamp)) {
+        TempData.labels.push(timestamp); // Tambahkan timestamp ke labels
+        TempData.values.push(TempC);   // Tambahkan nilai Temp ke values
+
+        // Batasi jumlah data hanya 20
+        if (TempData.labels.length > 20) {
+            TempData.labels.shift(); // Hapus elemen pertama (data tertua)
+            TempData.values.shift(); // Hapus elemen pertama (data tertua)
+        }
+
+        // Perbarui chart
+        TempChart.update();
+    }
+}
+
+// Fungsi untuk memuat data awal dari Firestore
+async function loadInitialData() {
+    try {
+        const querySnapshot = await db.collection(userEmail)
+            .orderBy('timestamp')  // Urutkan berdasarkan timestamp
+            .get(); // Ambil seluruh dokumen dari koleksi
+        
+        querySnapshot.forEach((doc) => {
+            const data = doc.data(); // Ambil seluruh data dokumen
+            console.log('Data yang diterima:', data);  // Cek data yang diterima
+
+            // Cek apakah timestamp dan TempC ada langsung dalam data (bukan di dalam fields)
+            if (data.timestamp && data.TempC) {
+                const timestamp = data.timestamp;
+                const TempC = parseFloat(data.TempC); // Parsing angka
+
+                if (timestamp && !isNaN(TempC)) {
+                    const parsedTimestamp = parseTimestamp(timestamp); // Mengonversi timestamp ke Date
+                    addDataToChart(parsedTimestamp.toLocaleString(), TempC); // Ubah format timestamp agar bisa dibaca
+                }
+            } else {
+                console.error('Data tidak lengkap di dokumen:', data);  // Log data yang tidak lengkap
+            }
+        });
+
+        TempChart.update(); // Perbarui grafik setelah data awal dimuat
+    } catch (error) {
+        console.error('Gagal memuat data awal:', error);
+    }
+}
+
+// Fungsi untuk memuat data baru secara real-time
+db.collection(userEmail)
+    .orderBy('timestamp')  // Urutkan berdasarkan timestamp
+    .onSnapshot((querySnapshot) => {
+        querySnapshot.docChanges().forEach((change) => {
+            if (change.type === "added") {
+                const data = change.doc.data(); // Ambil seluruh data dokumen
+                console.log('Data baru yang diterima:', data);  // Cek data baru yang diterima
+                
+                // Cek apakah timestamp dan TempC ada langsung dalam data (bukan di dalam fields)
+                if (data.timestamp && data.TempC) {
+                    const timestamp = data.timestamp;
+                    const TempC = parseFloat(data.TempC);
+
+                    if (timestamp && !isNaN(TempC)) {
+                        const parsedTimestamp = parseTimestamp(timestamp); // Mengonversi timestamp ke Date
+                        addDataToChart(parsedTimestamp.toLocaleString(), TempC); // Ubah format timestamp agar bisa dibaca
+                    }
+                } else {
+                    console.error('Data Firestore tidak lengkap:', data);  // Log data yang tidak lengkap
+                }
+            }
+        });
+
+        TempChart.update();  // Perbarui grafik setelah menerima data baru
+    });
+
+
+// Ambil data awal
+loadInitialData();
+
+document.getElementById('backButton').addEventListener('click', function() {
+    console.log('Tombol Back diklik'); // Log ini untuk debugging
+    window.location.href = 'http://localhost:8002/dashboardlogin.php'; // URL yang sesuai
+});
+
+</script>
  </body>
 </html>
