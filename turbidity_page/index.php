@@ -53,8 +53,8 @@ $fullname = $_SESSION['fullname'] ?? 'Guest';
             </h3>
             
             <!-- Nilai Turbidity -->
-            <p style="font-size: 40px; font-weight: bold; color: white; background-color: #29b6f6; padding: 15px 30px; border-radius: 50px; display: inline-block; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); margin-top: 10px;">
-                50 NTU
+            <p id="CurrentNTUValue" style="font-size: 40px; font-weight: bold; color: white; background-color: #29b6f6; padding: 15px 30px; border-radius: 50px; display: inline-block; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); margin-top: 10px;">
+                0 NTU
             </p> 
      </div>
     </div>
@@ -65,8 +65,8 @@ $fullname = $_SESSION['fullname'] ?? 'Guest';
     </h2>
     <div class="cards">
      <div class="card">
-      <p>
-        Kekeruhan air yang dianjurkan maksimum 50 NTU
+      <p id="AnalystMessage">
+        Tingkat kekeruhan air kolam yang disarankan adalah 0-25 NTU. Rentang ini menjamin air tetap jernih, memungkinkan cahaya matahari menembus, dan mendukung pertumbuhan alga yang bermanfaat bagi ekosistem kolam.
       </p>
      </div>
     </div>
@@ -172,6 +172,25 @@ function addDataToChart(timestamp, NTU) {
     }
 }
 
+// Fungsi untuk memperbarui nilai NTU di elemen HTML dengan satuan
+function updateCurrentNTUValue(NTU) {
+    const currentNTUValueElement = document.getElementById('CurrentNTUValue');
+    currentNTUValueElement.textContent = `${NTU.toFixed(2)} NTU`; // Tambahkan satuan NTU
+}
+
+// Fungsi untuk memperbarui pesan Analyst berdasarkan nilai NTU
+function updateAnalystMessage(NTU) {
+    const analystMessageElement = document.getElementById('AnalystMessage');
+
+    if (NTU < 25) {
+        analystMessageElement.textContent = "Kekeruhan kolam Anda saat ini berada pada tingkat yang ideal. Kondisi air yang jernih mendukung pertumbuhan ikan yang sehat dan meminimalkan risiko penyakit.";
+    } else if (NTU >= 25 && NTU <= 50) {
+        analystMessageElement.textContent = "Kekeruhan kolam Anda mulai meningkat dan perlu dipantau lebih lanjut. Sebaiknya lakukan pemeriksaan lebih lanjut untuk mengetahui penyebab kekeruhan dan segera ambil tindakan perbaikan seperti membersihkan filter atau mengganti sebagian air.";
+    } else if (NTU > 50) {
+        analystMessageElement.textContent = "Kekeruhan kolam Anda sangat tinggi dan dapat membahayakan kesehatan ikan. Kondisi ini mengindikasikan adanya masalah serius seperti kelebihan pakan, pertumbuhan alga yang berlebihan, atau adanya bahan organik yang membusuk. Segera lakukan tindakan perbaikan menyeluruh seperti membersihkan kolam, mengganti sebagian besar air, dan memeriksa sistem filtrasi.";
+    }
+}
+
 // Fungsi untuk memuat data awal dari Firestore
 async function loadInitialData() {
     try {
@@ -197,6 +216,13 @@ async function loadInitialData() {
             }
         });
 
+        // Perbarui nilai NTU saat ini dengan data terakhir
+        if (NtuData.values.length > 0) {
+            const latestNTU = NtuData.values[NtuData.values.length - 1];
+            updateCurrentNTUValue(latestNTU);
+            updateAnalystMessage(latestNTU); // Perbarui pesan analyst
+        }
+
         NtuChart.update(); // Perbarui grafik setelah data awal dimuat
     } catch (error) {
         console.error('Gagal memuat data awal:', error);
@@ -220,6 +246,8 @@ db.collection(userEmail)
                     if (timestamp && !isNaN(NTU)) {
                         const parsedTimestamp = parseTimestamp(timestamp); // Mengonversi timestamp ke Date
                         addDataToChart(parsedTimestamp.toLocaleString(), NTU); // Ubah format timestamp agar bisa dibaca
+                        updateCurrentNTUValue(NTU); // Perbarui nilai NTU di UI
+                        updateAnalystMessage(NTU); // Perbarui pesan analyst
                     }
                 } else {
                     console.error('Data Firestore tidak lengkap:', data);  // Log data yang tidak lengkap

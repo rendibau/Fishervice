@@ -53,8 +53,8 @@ $fullname = $_SESSION['fullname'] ?? 'Guest';
             </h3>
             
             <!-- Nilai Temperature -->
-            <p style="font-size: 40px; font-weight: bold; color: white; background-color: #29b6f6; padding: 15px 30px; border-radius: 50px; display: inline-block; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); margin-top: 10px;">
-                5°C
+            <p id="CurrentTempValue" style="font-size: 40px; font-weight: bold; color: white; background-color: #29b6f6; padding: 15px 30px; border-radius: 50px; display: inline-block; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); margin-top: 10px;">
+                0°C
             </p> 
      </div>
     </div>
@@ -65,8 +65,8 @@ $fullname = $_SESSION['fullname'] ?? 'Guest';
     </h2>
     <div class="cards">
      <div class="card">
-      <p>
-       The optimal temperature range for the fish is between 26°C and 30°C. Maintaining this temperature range ensures the best growth and health for the fish.
+      <p id="AnalystMessageTemp">
+        Suhu ideal untuk ikan berkisar antara 24°C hingga 28°C. Rentang suhu ini memastikan pertumbuhan dan kesehatan ikan yang optimal.
       </p>
      </div>
     </div>
@@ -172,6 +172,26 @@ function addDataToChart(timestamp, TempC) {
     }
 }
 
+// Fungsi untuk memperbarui nilai Temp di elemen HTML dengan satuan
+function updateCurrentTempValue(TempC) {
+    const currentTempValueElement = document.getElementById('CurrentTempValue');
+    currentTempValueElement.textContent = `${TempC.toFixed(2)} °C`; // Tambahkan satuan Derajat
+}
+
+// Fungsi untuk memperbarui pesan suhu berdasarkan nilai suhu
+function updateAnalystMessageTemp(temp) {
+    const analystMessageTempElement = document.getElementById('AnalystMessageTemp');
+
+    if (temp >= 24 && temp <= 28) {
+        analystMessageTempElement.textContent = "Suhu kolam Anda saat ini sangat ideal untuk sebagian besar jenis ikan. Rentang suhu ini memungkinkan ikan untuk beraktivitas dengan optimal, nafsu makan meningkat, dan pertumbuhan berlangsung baik.";
+    } else if ((temp >= 22 && temp < 24) || (temp > 28 && temp <= 30)) {
+        analystMessageTempElement.textContent = "Suhu kolam Anda mulai menyimpang dari kondisi ideal. Suhu yang terlalu rendah atau terlalu tinggi dapat menyebabkan stres pada ikan, mengurangi nafsu makan, dan memperlambat pertumbuhan. Sebaiknya dilakukan pemantauan lebih lanjut dan penyesuaian suhu secara bertahap.";
+    } else {
+        analystMessageTempElement.textContent = "Suhu kolam Anda berada di luar rentang yang aman bagi sebagian besar jenis ikan. Kondisi ini sangat berbahaya dan dapat menyebabkan kematian pada ikan. Segera lakukan tindakan untuk menstabilkan suhu kolam.";
+    }
+}
+
+
 // Fungsi untuk memuat data awal dari Firestore
 async function loadInitialData() {
     try {
@@ -197,6 +217,13 @@ async function loadInitialData() {
             }
         });
 
+        // Perbarui nilai Temp saat ini dengan data terakhir
+        if (TempData.values.length > 0) {
+            const latestTemp = TempData.values[TempData.values.length - 1];
+            updateCurrentTempValue(latestTemp);
+            updateAnalystMessageTemp(latestTemp); // Perbarui pesan analyst
+        }
+
         TempChart.update(); // Perbarui grafik setelah data awal dimuat
     } catch (error) {
         console.error('Gagal memuat data awal:', error);
@@ -220,6 +247,8 @@ db.collection(userEmail)
                     if (timestamp && !isNaN(TempC)) {
                         const parsedTimestamp = parseTimestamp(timestamp); // Mengonversi timestamp ke Date
                         addDataToChart(parsedTimestamp.toLocaleString(), TempC); // Ubah format timestamp agar bisa dibaca
+                        updateCurrentTempValue(TempC); // Perbarui nilai Temp di UI
+                        updateAnalystMessageTemp(TempC); // Perbarui pesan analyst
                     }
                 } else {
                     console.error('Data Firestore tidak lengkap:', data);  // Log data yang tidak lengkap

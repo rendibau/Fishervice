@@ -54,8 +54,8 @@ $fullname = $_SESSION['fullname'] ?? 'Guest';
             </h3>
             
             <!-- Nilai pH -->
-            <p style="font-size: 40px; font-weight: bold; color: white; background-color: #29b6f6; padding: 15px 30px; border-radius: 50px; display: inline-block; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); margin-top: 10px;">
-                8.5
+            <p id="currentPHValue" style="font-size: 40px; font-weight: bold; color: white; background-color: #29b6f6; padding: 15px 30px; border-radius: 50px; display: inline-block; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); margin-top: 10px;">
+                0
             </p>       
      </div>
     </div>
@@ -66,8 +66,8 @@ $fullname = $_SESSION['fullname'] ?? 'Guest';
     </h2>
     <div class="cards">
      <div class="card">
-      <p>
-        pH air yang optimal untuk habitat ikan nila antara 6.5 - 8.5 
+      <p id="AnalystMessagePH">
+        pH air yang ideal untuk sebagian besar jenis ikan air tawar berada dalam rentang 6.5 hingga 8. Kondisi ini menciptakan lingkungan yang optimal bagi ikan untuk tumbuh dan berkembang. 
       </p>
      </div>
     </div>
@@ -173,6 +173,25 @@ function addDataToChart(timestamp, pHValue) {
     }
 }
 
+// Fungsi untuk memperbarui nilai pH saat ini
+function updateCurrentPHValue(pHValue) {
+    const currentPHValueElement = document.getElementById('currentPHValue');
+    currentPHValueElement.textContent = pHValue.toFixed(2); // Format dengan 2 desimal
+}
+
+// Fungsi untuk memperbarui pesan pH berdasarkan nilai pH
+function updateAnalystMessagePH(pH) {
+    const analystMessagePHElement = document.getElementById('AnalystMessagePH');
+
+    if (pH >= 6.5 && pH <= 8.0) {
+        analystMessagePHElement.textContent = "pH kolam Anda berada dalam rentang ideal. Kondisi ini mendukung pertumbuhan ikan yang sehat dan optimal. Ikan dapat menyerap nutrisi dengan baik dan sistem kekebalan tubuh mereka juga bekerja dengan efisien.";
+    } else if ((pH >= 6.0 && pH < 6.5) || (pH > 8.0 && pH <= 8.5)) {
+        analystMessagePHElement.textContent = "pH kolam Anda mulai menyimpang dari kondisi ideal. Kondisi ini dapat menyebabkan stres pada ikan dan membuat mereka rentan terhadap penyakit. Perlu dilakukan pengecekan lebih lanjut dan penyesuaian pH secara bertahap.";
+    } else {
+        analystMessagePHElement.textContent = "pH kolam Anda berada di luar rentang yang aman bagi kehidupan ikan. Kondisi ini sangat berbahaya dan dapat menyebabkan kematian pada ikan dalam waktu singkat. Segera lakukan tindakan untuk menstabilkan pH kolam.";
+    }
+}
+
 // Fungsi untuk memuat data awal dari Firestore
 async function loadInitialData() {
     try {
@@ -198,6 +217,13 @@ async function loadInitialData() {
             }
         });
 
+        // Perbarui nilai pH saat ini dengan data terakhir
+        if (pHData.values.length > 0) {
+            const latestPH = pHData.values[pHData.values.length - 1];
+            updateCurrentPHValue(latestPH);
+            updateAnalystMessagePH(latestPH); // Perbarui pesan pH
+        }
+
         pHChart.update(); // Perbarui grafik setelah data awal dimuat
     } catch (error) {
         console.error('Gagal memuat data awal:', error);
@@ -218,10 +244,12 @@ db.collection(userEmail)
                     const timestamp = data.timestamp;
                     const pHValue = parseFloat(data.pHValue);
 
-                    if (timestamp && !isNaN(pHValue)) {
+                    if (timestamp && !isNaN(pHValue)){
                         const parsedTimestamp = parseTimestamp(timestamp); // Mengonversi timestamp ke Date
                         addDataToChart(parsedTimestamp.toLocaleString(), pHValue); // Ubah format timestamp agar bisa dibaca
-                    }
+                        updateCurrentPHValue(pHValue); // Perbarui nilai pH saat ini
+                        updateAnalystMessagePH(pHValue); // Perbarui pesan pH
+                    } 
                 } else {
                     console.error('Data Firestore tidak lengkap:', data);  // Log data yang tidak lengkap
                 }
