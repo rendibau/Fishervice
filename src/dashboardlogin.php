@@ -21,14 +21,17 @@
 
 </head>
 <body>
+    <button id="toggleSidebar" class="toggle-btn">
+        ☰
+    </button>
     <div class="sidebar">
         <h2>
-            <img alt="Logo" height="30" src="https://gcdnb.pbrd.co/images/zFDCP4zQaltQ.png?o=1" width="30"/>
-            Fishervice
+            Menu
         </h2>
         <ul>
             <li><a class="active" href="#result"><i class="fas fa-chart-line"></i>Result</a></li>
             <li><a href="#analyst"><i class="fas fa-chart-pie"></i>Analyst</a></li>
+            <li><a href="#history"><i class="fas fa-history"></i> History</a></li>
         </ul>
         <div class="logout">
             <a href="logout.php">
@@ -44,7 +47,10 @@
             Your browser does not support the video tag.
         </video>
         <div class="header">
-            <h1></h1>
+            <div class="logo-container">
+                <img src="https://gcdnb.pbrd.co/images/zFDCP4zQaltQ.png?o=1" alt="Logo" width="30" height="30">
+                <span><strong>Fishervice</strong></span>
+        </div>
             <div class="profile">
                 <span>
                 <strong>Hi, <?php echo htmlspecialchars($_SESSION['fullname']); ?></strong>
@@ -102,7 +108,32 @@
                 </div>
             </div>
         </div>
-
+        <section id="history">
+    <!-- analyst section -->
+    <div id="history" class="analyst-box">
+        <h2>History</h2>
+        <div class="analyst-cards">
+            <!-- Link to Temperature page -->
+            <div class="analyst-card">
+                <a href="javascript:void(0);" onclick="saveAndRedirect('HTemperature/HistoryTemperature.php')">
+                    <h3>Temperature</h3>
+                </a>
+            </div>
+            <!-- Link to pH page -->
+            <div class="analyst-card">
+                <a href="javascript:void(0);" onclick="saveAndRedirect('HPh/HistoryPh.php')">
+                    <h3>pH</h3>
+                </a>
+            </div>
+            <!-- Link to Turbidity page -->
+            <div class="analyst-card">
+                <a href="javascript:void(0);" onclick="saveAndRedirect('HTurbidity/HistoryTurbidity.php')">
+                    <h3>Turbidity</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
         <div id="contact" class="footer">
             <h2>Contact Information</h2>
             <p><i class="fas fa-envelope"></i> Email: Fishervice4@gmail.com</p>
@@ -117,6 +148,28 @@
     </div>
 
     <script>
+    const sidebar = document.querySelector('.sidebar');
+    const toggleBtn = document.getElementById('toggleSidebar');
+    const mainContent = document.querySelector('.main-content');
+
+    toggleBtn.addEventListener('click', () => {
+        // Toggle kelas 'active' pada sidebar
+        sidebar.classList.toggle('active');
+
+        // Pindahkan tombol ke sisi lain saat sidebar terbuka
+        if (sidebar.classList.contains('active')) {
+            toggleBtn.style.left = '270px'; // Sesuaikan dengan lebar sidebar
+        } else {
+            toggleBtn.style.left = '20px';
+        }
+        // Geser main content
+        if (sidebar.classList.contains('active')) {
+            mainContent.style.marginLeft = '250px'; // Sesuaikan dengan lebar sidebar
+        } else {
+            mainContent.style.marginLeft = '0';
+        }
+    });
+    
     // Ambil email dari PHP session
     const userEmail = '<?php echo $_SESSION['email']; ?>';
 
@@ -321,6 +374,25 @@ document.getElementById('sendDataBtn3').addEventListener('click', function() {
         email: '<?php echo $_SESSION['email']; ?>'
     });
 });
+
+function saveAndRedirect(url) {
+    // Ambil data dari PHP session
+    var fullname = '<?php echo $_SESSION['fullname']; ?>';
+    var email = '<?php echo $_SESSION['email']; ?>';
+
+    // Cek apakah data ada
+    if (fullname && email) {
+        // Menyimpan data di sessionStorage
+        sessionStorage.setItem('fullname', fullname);
+        sessionStorage.setItem('email', email);
+
+        // Redirect ke halaman tujuan
+        window.location.href = url;
+    } else {
+        // Jika data tidak ada, arahkan ke halaman login
+        window.location.href = 'signin.html';
+    }
+}
 
 </script>
 </body>

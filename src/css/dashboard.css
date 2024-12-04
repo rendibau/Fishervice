@@ -89,10 +89,13 @@
             margin-right: 10px;
         }
         .main-content {
-            margin-left: 270px;
+            margin-top: 1px; /* Tambahkan ruang di bawah headbar */
+            margin-left: 0px;
             padding: 20px;
             position: relative;
             overflow: hidden;
+            z-index: 1; /* Lebih rendah daripada sidebar */
+            transition: margin-left 0.3s ease; /* Animasi transisi saat sidebar muncul */
         }
         .main-content video {
             position: absolute;
@@ -102,17 +105,6 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.4); /* Add semi-transparent background color */
-            padding: 20px; /* Add padding */
-            border-radius: 20px; /* More rounded corners */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Add box shadow */
-            color: #333; /* Change text color to dark for better contrast */
         }
         .header h1 {
             font-size: 24px;
@@ -130,6 +122,11 @@
         }
         .header .buttons button:hover {
             background-color: #f0f0f0;
+        }
+        .header .profile span {
+            font-size: 18px; /* Sesuaikan ukuran font */
+            color: #666; /* (Opsional) Sesuaikan warna teks */
+            margin-right: 50px;
         }
         .analyst-box {
             background-color: rgba(255, 255, 255, 0.4);
@@ -222,7 +219,7 @@
             padding: 20px;
             border-radius: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-top: 20px;
+            margin-top: 500px;
             color: #333;
         }
         .footer h2 {
@@ -246,8 +243,84 @@
         .product-card a p {
             color: black !important; /* Pastikan teks di dalam h3 dan p juga hitam */
         }
-        
-        
-        
-        
-        
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Awalnya disembunyikan di luar layar */
+            width: 250px;
+            height: 100vh;
+            background-color: #fff;
+            padding: 0px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* Pastikan sidebar berada di depan */
+            transition: left 0.3s ease; /* Animasi transisi */
+        }
+        .sidebar.active {
+            left: 0; /* Sidebar muncul sepenuhnya */
+        }
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000; /* Agar tombol terlihat di atas */
+            background-color: #41a1f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .toggle-btn:hover {
+            transform: scale(1.1);
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex: 1;
+            text-align: center;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 24px;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header .profile {
+            flex-shrink: 0;
+        }
+
+        /* Menghapus gaya default pada link di dalam .analyst-card */
+        .analyst-card a {
+            text-decoration: none !important; /* Menghapus garis bawah */
+            color: black !important; /* Mengubah warna teks menjadi hitam */
+        }
+
+        /* Gaya link saat hover */
+        .analyst-card a:hover {
+            text-decoration: none !important; /* Tetap menghapus garis bawah pada hover */
+            color: #333 !important; /* Mengubah warna saat hover */
+        }
+
+        /* Menghapus garis bawah dan mengganti warna menjadi hitam */
+        a:-webkit-any-link {
+            color: black !important;  /* Warna hitam */
+            text-decoration: none !important;  /* Tidak ada garis bawah */
+        }
+
+        /* Saat hover, tetap tidak ada garis bawah dan warna sedikit lebih gelap */
+        a:-webkit-any-link:hover {
+            text-decoration: none !important;  /* Tidak ada garis bawah */
+            color: #333 !important;  /* Warna lebih gelap */
+        }
