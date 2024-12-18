@@ -90,17 +90,17 @@ $fullname = $_SESSION['fullname'] ?? 'Guest';
        </p>
   </div>
    <script>
-    // Ambil email dari PHP session
+// Ambil email dari PHP session
 const userEmail = '<?php echo $_SESSION['email']; ?>';
 
 // Konfigurasi Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyCbXkF8tovw4nQHFGy0bo0UAfBRbtuewhQ",
-  authDomain: "ntu-page.firebaseapp.com",
-  projectId: "ntu-page",
-  storageBucket: "ntu-page.firebasestorage.app",
-  messagingSenderId: "595402181819",
-  appId: "1:595402181819:web:078a36fa978bd3c1416d9e"
+  apiKey: "AIzaSyA7LZUxNcMybJmrlndExNXHZhlO2Yy1yAo",
+  authDomain: "ntu-container.firebaseapp.com",
+  projectId: "ntu-container",
+  storageBucket: "ntu-container.firebasestorage.app",
+  messagingSenderId: "307669121895",
+  appId: "1:307669121895:web:a1b0c2e8ae49104fa3cdc2"
 };
 
 // Initialize Firebase
@@ -264,7 +264,7 @@ loadInitialData();
 
         document.getElementById('backButton').addEventListener('click', function() {
         console.log('Tombol Back diklik'); // Log ini untuk debugging
-        window.location.href = 'http://localhost:8002/dashboardlogin.php'; // URL yang sesuai
+        window.location.href = 'http://13.236.116.101:8002/dashboardlogin.php'; // URL yang sesuai
     });
    </script>
  </body>

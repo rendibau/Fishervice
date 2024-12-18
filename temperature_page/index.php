@@ -95,12 +95,12 @@ const userEmail = '<?php echo $_SESSION['email']; ?>';
 
 // Konfigurasi Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyCxfE1LX7VLTxtVTCJDPfBKa2kz0INCM8U",
-    authDomain: "temperature-page-4efeb.firebaseapp.com",
-    projectId: "temperature-page-4efeb",
-    storageBucket: "temperature-page-4efeb.firebasestorage.app",
-    messagingSenderId: "208492571853",
-    appId: "1:208492571853:web:29a5424eafd161daedcd84"
+    apiKey: "AIzaSyDl8An5AV1bFSSQREsWt70AYdnvAwkbL9w",
+  authDomain: "temperature-container.firebaseapp.com",
+  projectId: "temperature-container",
+  storageBucket: "temperature-container.firebasestorage.app",
+  messagingSenderId: "328356894472",
+  appId: "1:328356894472:web:761dc08c9af9e1cea17ebd"
 };
 
 // Initialize Firebase
@@ -265,7 +265,7 @@ loadInitialData();
 
 document.getElementById('backButton').addEventListener('click', function() {
     console.log('Tombol Back diklik'); // Log ini untuk debugging
-    window.location.href = 'http://localhost:8002/dashboardlogin.php'; // URL yang sesuai
+    window.location.href = 'http://13.236.116.101:8002/dashboardlogin.php'; // URL yang sesuai
 });
 
 </script>

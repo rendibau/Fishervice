@@ -96,12 +96,12 @@ const userEmail = '<?php echo $_SESSION['email']; ?>';
 
 // Konfigurasi Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyB_wB_mEC_3VuB6i1CMWMSerQlCcV3LqVg",
-    authDomain: "ph-page.firebaseapp.com",
-    projectId: "ph-page",
-    storageBucket: "ph-page.firebasestorage.app",
-    messagingSenderId: "49142641124",
-    appId: "1:49142641124:web:498b05acc914af8f9f57f1"
+    apiKey: "AIzaSyDrvM0uqhKR25Qd8va-5Ts_5zcMPYMv0h8",
+  authDomain: "ph-container-73dbc.firebaseapp.com",
+  projectId: "ph-container-73dbc",
+  storageBucket: "ph-container-73dbc.firebasestorage.app",
+  messagingSenderId: "1092227667658",
+  appId: "1:1092227667658:web:06039be24f9d8cdbd60633"
 };
 
 // Initialize Firebase
@@ -265,7 +265,7 @@ loadInitialData();
 
     document.getElementById('backButton').addEventListener('click', function() {
     console.log('Tombol Back diklik'); // Log ini untuk debugging
-    window.location.href = 'http://localhost:8002/dashboardlogin.php'; // URL yang sesuai
+    window.location.href = 'http://13.236.116.101:8002/dashboardlogin.php'; // URL yang sesuai
 });
 </script>
  </body>
