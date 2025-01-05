@@ -8,20 +8,6 @@ document.getElementById("signupButton").addEventListener("click", function() {
     // Redirect ke signup.html
     window.location.href = "signup.html";
 });
-
-    // JavaScript untuk menambahkan kelas 'active' ke item sidebar yang diklik
-    const menuItems = document.querySelectorAll('.sidebar ul li a');
-
-    menuItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // Hapus kelas 'active' dari semua item
-            menuItems.forEach(link => link.classList.remove('active'));
-            
-            // Tambahkan kelas 'active' ke item yang diklik
-            this.classList.add('active');
-        });
-    });
-
     // JavaScript untuk membuat product card menjadi clickable
     document.getElementById("productCard1").addEventListener("click", function() {
         window.location.href = "https://aquaculturemag.com/2023/05/29/indonesia-towards-a-world-aquaculture-giant/";
@@ -41,8 +27,41 @@ document.getElementById("signupButton").addEventListener("click", function() {
     document.getElementById("productCard6").addEventListener("click", function() {
         window.location.href = "https://news.mongabay.com/2022/01/indonesia-aims-for-sustainable-fish-farming-with-aquaculture-villages/";
     });
-    // JavaScript untuk menambahkan kelas 'active' ke item sidebar yang sesuai saat scroll
-    document.addEventListener('scroll', function() {
+    const sidebar = document.querySelector('.sidebar');
+    const toggleBtn = document.getElementById('toggleSidebar');
+    const mainContent = document.querySelector('.main-content');
+
+    toggleBtn.addEventListener('click', () => {
+        // Toggle kelas 'active' pada sidebar
+        sidebar.classList.toggle('active');
+
+        // Pindahkan tombol ke sisi lain saat sidebar terbuka
+        if (sidebar.classList.contains('active')) {
+            toggleBtn.style.left = '270px'; // Sesuaikan dengan lebar sidebar
+        } else {
+            toggleBtn.style.left = '20px';
+        }
+        // Geser main content
+        if (sidebar.classList.contains('active')) {
+            mainContent.style.marginLeft = '250px'; // Sesuaikan dengan lebar sidebar
+        } else {
+            mainContent.style.marginLeft = '0';
+        }
+    });
+    // JavaScript untuk menambahkan kelas 'active' ke item sidebar yang diklik
+    const menuItems = document.querySelectorAll('.sidebar ul li a');
+
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Hapus kelas 'active' dari semua item
+            menuItems.forEach(link => link.classList.remove('active'));
+            
+            // Tambahkan kelas 'active' ke item yang diklik
+            this.classList.add('active');
+        });
+    });
+     // JavaScript untuk menambahkan kelas 'active' ke item sidebar yang sesuai saat scroll
+     document.addEventListener('scroll', function() {
         const sections = document.querySelectorAll('section');
         const menuItems = document.querySelectorAll('.sidebar ul li a');
 
