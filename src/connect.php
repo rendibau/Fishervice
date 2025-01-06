@@ -35,6 +35,17 @@ if ($conn->query($sql) !== TRUE) {
     die("Error saat membuat tabel: " . $conn->error);
 }
 
+// Tambahkan kolom `reset_token` dan `reset_token_expiry` jika belum ada
+$result = $conn->query("SHOW COLUMNS FROM users LIKE 'reset_token'");
+if ($result->num_rows === 0) {
+    $sql = "ALTER TABLE users 
+            ADD COLUMN reset_token VARCHAR(255) NULL, 
+            ADD COLUMN reset_token_expiry DATETIME NULL";
+    if ($conn->query($sql) !== TRUE) {
+        die("Error saat menambahkan kolom: " . $conn->error);
+    }
+}
+
 // Ambil data dari form
 $fullname = mysqli_real_escape_string($conn, $_POST['fullname']);
 $phone = mysqli_real_escape_string($conn, $_POST['phone']);

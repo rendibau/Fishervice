@@ -6,11 +6,17 @@ services:
     volumes:
       - ./src:/var/www/html
       - session-data:/var/lib/php/sessions
+      - ./vendor:/var/www/vendor
     ports:
       - 8002:80
     depends_on:
       - redis  # Memastikan Redis sudah siap sebelum container ini dijalankan
-
+    environment:
+      - SMTP_SERVER=smtp.gmail.com
+      - SMTP_PORT=587
+      - SMTP_USER=fishervice4@gmail.com
+      - SMTP_PASS=14Oktober2024
+      
   mysql_db:
     image: mysql:latest
     container_name: user_db # Nama container yang spesifik
