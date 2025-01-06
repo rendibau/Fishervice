@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'kikifishervice@gmail.com';
-            $mail->Password = 'fkqktxjtxnvhhatz'; //App Password bukan Password Asli
+            $mail->Password = '*'; //App Password bukan Password Asli
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
