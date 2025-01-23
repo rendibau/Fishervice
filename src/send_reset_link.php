@@ -29,19 +29,19 @@ if ($result->num_rows > 0) {
 
     $sql = "UPDATE users SET reset_token = '$token', reset_token_expiry = '$expiry' WHERE email = '$email'";
     if (mysqli_query($conn, $sql)) {
-        $resetLink = "http://localhost:8002/reset_password_form.php?token=$token";
+        $resetLink = "http://13.236.116.101:8002/reset_password_form.php?token=$token";
 
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'kikifishervice@gmail.com';
-            $mail->Password = '*'; //App Password bukan Password Asli
+            $mail->Username = 'fishervice4@gmail.com';
+            $mail->Password = '*'; //App Password Google atau yang lain bukan Password Asli
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setFrom('kikifishervice@gmail.com', 'Fishervice Company');
+            $mail->setFrom('fishervice4@gmail.com', 'Fishervice Company');
             $mail->addAddress($email);
 
             $mail->isHTML(true);
