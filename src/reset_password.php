@@ -25,11 +25,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $update_password = "UPDATE users SET password = '$hashed_password', reset_token = NULL, reset_token_expiry = NULL WHERE reset_token = '$token'";
             if (mysqli_query($conn, $update_password)) {
                 $_SESSION['info'] = "Your password has been successfully updated.";
-                // Tampilkan pesan berhasil dan alihkan setelah penghitung mundur selesai
                 echo "
                 <html>
                 <head>
                     <title>Password Updated</title>
+                    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
+                    <style>
+                        body {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 100vh;
+                            background-color: #e0f7fa;
+                            font-family: 'Arial', sans-serif;
+                            margin: 0;
+                        }
+                        .message-container {
+                            text-align: center;
+                            background: #ffffff;
+                            padding: 30px;
+                            border-radius: 10px;
+                            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                        }
+                        .message-container h2 {
+                            color: #1e88e5;
+                            margin-bottom: 15px;
+                        }
+                        .message-container p {
+                            color: #555;
+                            font-size: 16px;
+                        }
+                        .message-container .icon {
+                            font-size: 50px;
+                            color: #29b6f6;
+                            margin-bottom: 15px;
+                        }
+                    </style>
                     <script>
                         var countdown = 5;
                         function updateCountdown() {
@@ -43,9 +74,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         setInterval(updateCountdown, 1000);
                     </script>
                 </head>
-                <body style='display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8f9fa;'>
-                    <div style='text-align: center; font-family: Arial, sans-serif;'>
-                        <h2 style='color: #1e88e5;'>Password berhasil diperbarui!</h2>
+                <body>
+                    <div class='message-container'>
+                        <i class='fas fa-check-circle icon'></i>
+                        <h2>Password berhasil diperbarui!</h2>
                         <p>Anda akan diarahkan ke halaman login dalam <span id='countdown'>5 detik</span>...</p>
                     </div>
                 </body>
