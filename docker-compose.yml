@@ -11,6 +11,11 @@ services:
       - 8002:80
     depends_on:
       - redis  # Memastikan Redis sudah siap sebelum container ini dijalankan
+    #environment:
+      #- SMTP_SERVER=
+      #- SMTP_PORT=
+      #- SMTP_USER=
+      #- SMTP_PASS=
       
   mysql_db:
     image: mysql:latest
