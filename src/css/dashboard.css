@@ -324,3 +324,157 @@
             text-decoration: none !important;  /* Tidak ada garis bawah */
             color: #333 !important;  /* Warna lebih gelap */
         }
+        /* Atur ulang tampilan untuk perangkat kecil */
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden; /* Mencegah scroll horizontal */
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px; /* Awalnya disembunyikan di luar layar */
+        width: 250px;
+        height: 100vh;
+        background-color: #fff;
+        padding: 0px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000; /* Pastikan sidebar berada di depan */
+        transition: left 0.3s ease; /* Animasi transisi */
+    }
+
+    .sidebar.active {
+        left: 0; /* Sidebar muncul */
+    }
+
+    .main-content {
+        margin-left: 0 !important; /* Pastikan konten tidak bergeser */
+    }
+
+    #toggleSidebar {
+        position: fixed;
+        top: 10px;
+        left: 20px;
+        z-index: 1100; /* Tombol di atas sidebar */
+    }
+
+    /* Responsivitas untuk kartu analyst */
+    .analyst-cards {
+        display: flex;
+        flex-direction: column; /* Susun vertikal */
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .analyst-card {
+        width: 100%; /* Sesuaikan lebar */
+        text-align: center;
+    }
+
+    /* Responsivitas untuk kartu produk */
+    .product-cards {
+        display: flex;
+        flex-direction: column; /* Susun vertikal */
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .product-card {
+        width: 100%; /* Sesuaikan lebar */
+        text-align: center;
+    }
+
+    /* Pastikan background video menyesuaikan layar */
+    video {
+        object-fit: cover;
+        width: 100%;
+        height: 100vh; /* Penuh tinggi layar */
+    }
+}
+
+/* Atur ulang tampilan untuk perangkat sangat kecil */
+@media screen and (max-width: 480px) {
+    .header .logo-container img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .header span {
+        font-size: 14px;
+    }
+
+    .sidebar h2 {
+        font-size: 18px;
+    }
+
+    .sidebar ul li a {
+        font-size: 14px;
+    }
+
+    .analyst-card h3, .product-card h3 {
+        font-size: 16px;
+    }
+
+    .analyst-card p, .product-card p {
+        font-size: 14px;
+    }
+
+    /* Tombol toggle lebih kecil */
+    #toggleSidebar {
+        font-size: 18px;
+    }
+}
+/* Responsivitas untuk menu analyst pada layar kecil */
+@media screen and (max-width: 768px) {
+    .analyst-cards, .product-cards {
+        display: flex;
+        flex-wrap: wrap; /* Bungkus elemen jika terlalu besar */
+        justify-content: center; /* Ratakan di tengah */
+        gap: 1rem; /* Jarak antar kartu */
+    }
+
+    .analyst-card, .product-card {
+        width: 90%; /* Sesuaikan lebar kartu agar pas dengan layar */
+        max-width: 400px; /* Batasi lebar maksimum */
+        box-sizing: border-box; /* Tambahkan padding tanpa melebihi lebar */
+        text-align: center; /* Pusatkan konten */
+    }
+
+    .analyst-card img, .product-card img {
+        max-width: 100%; /* Pastikan gambar tidak melampaui batas kartu */
+        height: auto; /* Sesuaikan tinggi secara proporsional */
+        border-radius: 8px; /* Tambahkan sudut melengkung untuk tampilan lebih menarik */
+    }
+
+    .analyst-card h3, .product-card h3 {
+        font-size: 16px; /* Sesuaikan ukuran teks untuk layar kecil */
+        margin: 0.5rem 0;
+    }
+
+    .analyst-card p, .product-card p {
+        font-size: 14px; /* Kurangi ukuran deskripsi */
+    }
+
+    /* Tambahan margin untuk tampilan lebih nyaman */
+    .analyst-cards, .product-cards {
+        margin: 1rem 0;
+    }
+}
+
+/* Responsivitas untuk layar sangat kecil */
+@media screen and (max-width: 480px) {
+    .analyst-card, .product-card {
+        width: 95%; /* Gunakan hampir seluruh lebar layar */
+    }
+
+    .analyst-card h3, .product-card h3 {
+        font-size: 14px; /* Ukuran lebih kecil untuk perangkat sangat kecil */
+    }
+
+    .analyst-card p, .product-card p {
+        font-size: 12px;
+    }
+}
+
+
+        

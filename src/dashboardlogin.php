@@ -48,7 +48,7 @@
         </video>
         <div class="header">
             <div class="logo-container">
-                <img src="https://gcdnb.pbrd.co/images/zFDCP4zQaltQ.png?o=1" alt="Logo" width="30" height="30">
+                <img src="https://iili.io/2Z190Cl.png" alt="Logo" width="30" height="30">
                 <span><strong>Fishervice</strong></span>
         </div>
             <div class="profile">
@@ -87,21 +87,21 @@
             <div class="product-cards">
                 <div class="product-card">
                     <button id="sendDataBtn1" class="no-link-style" style="color: black; background: none; border: none; cursor: pointer;">
-                        <img alt="Product 1" height="150" src="https://gcdnb.pbrd.co/images/8O9GGTtZRurR.png?o=1" width="300"/>
+                        <img alt="Product 1" height="150" src="https://gcdnb.pbrd.co/images/GGk0elhQoiPm.png?o=1" width="300"/>
                         <h3 style="color: black;">Temperature</h3>
                         <p style="color: black;">Memantau suhu air kolam ikan secara berkala sangat penting untuk menjaga kesehatan ikan dan kualitas air kolam.</p>
                     </button>
                 </div>
                 <div class="product-card">
                     <button id="sendDataBtn2" class="no-link-style" style="color: black; background: none; border: none; cursor: pointer;">
-                        <img alt="Product 2" height="150" src="https://gcdnb.pbrd.co/images/ADmtwJGKbl9h.png?o=1" width="300"/>
+                        <img alt="Product 2" height="150" src="https://gcdnb.pbrd.co/images/QDU7GBw62i0z.png?o=1" width="300"/>
                         <h3 style="color: black;">pH</h3>
                         <p style="color: black;">Memantau nilai pH air kolam ikan secara berkala sangat penting untuk menjaga kesehatan ikan dan kualitas air kolam.</p>
                     </button>
                 </div>
                 <div class="product-card">
                     <button id="sendDataBtn3" class="no-link-style" style="color: black; background: none; border: none; cursor: pointer;">
-                        <img alt="Product 3" height="150" src="https://gcdnb.pbrd.co/images/KY2XbUTnBj3f.png?o=1" width="300"/>
+                        <img alt="Product 3" height="150" src="https://gcdnb.pbrd.co/images/yiCWW3WHYXjR.png?o=1" width="300"/>
                         <h3 style="color: black;">Turbidity</h3>
                         <p style="color: black;">Memantau nilai kekeruhan air kolam ikan secara berkala sangat penting untuk menjaga kesehatan ikan dan kualitas air kolam.</p>
                     </button>

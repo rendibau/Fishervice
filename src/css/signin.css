@@ -148,3 +148,26 @@
         .nav-buttons .btn-signup {
             background: rgb(129, 212, 250);
         }
+        @media screen and (max-height: 400px) {
+            .login-box img {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 0px;
+            }
+            .login-box h2 {
+                font-size: 25px;
+                margin-bottom: 15px;
+            }
+            .login-box input {
+                width: 80%;
+                padding: 8px;
+                margin: 5px 0;
+                border: none;
+                border-radius: 20px;
+                outline: none;
+                font-size: 16px;
+            }
+            .content h2 {
+                font-size: 90px;
+            }
+        }

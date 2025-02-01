@@ -6,18 +6,7 @@ body {
     margin: 0;
     background-color: #f5f7fb;
 }
-.sidebar {
-    width: 250px;
-    height: 100vh;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    position: fixed;
-    left: -20px; /* Shift the sidebar to the left */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center the content horizontally */
-}
+
 .sidebar h2 {
     font-size: 24px;
     margin-top: 35px;
@@ -78,17 +67,6 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: -1;
-}
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.4); /* Add semi-transparent background color */
-    padding: 20px; /* Add padding */
-    border-radius: 20px; /* More rounded corners */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Add box shadow */
-    color: #333; /* Change text color to dark for better contrast */
 }
 .header h1 {
     font-size: 24px;
@@ -278,7 +256,7 @@ body {
     color: #555;
 }
 .box {
-    background: url('https://gcdnb.pbrd.co/images/mRML6upOlgIm.png?o=1') no-repeat center center; /* Add background image */
+    background: url('https://gcdnb.pbrd.co/images/oqjK9haEm0Uy.png?o=1') no-repeat center center; /* Add background image */
     background-size: cover; /* Cover the entire div */
     padding: 20px;
     border-radius: 20px; /* More rounded corners */
@@ -350,13 +328,16 @@ body {
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     z-index: 1000; /* Pastikan sidebar berada di depan */
     transition: left 0.3s ease; /* Animasi transisi */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content horizontally */
 }
 .sidebar.active {
     left: 0; /* Sidebar muncul sepenuhnya */
 }
 .toggle-btn {
     position: fixed;
-    top: 20px;
+    top: 16px;
     left: 20px;
     z-index: 1000; /* Agar tombol terlihat di atas */
     background-color: #41a1f6;
@@ -366,7 +347,7 @@ body {
     padding: 10px 15px;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
+    transition: left 0.3s ease;
 }
 .toggle-btn:hover {
     transform: scale(1.1);
@@ -378,18 +359,20 @@ body {
     gap: 10px;
     flex: 1;
     text-align: center;
+    margin-left: 170px; /* Ubah nilai sesuai keinginan */
 }
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-left: 60px; /* Ubah nilai sesuai keinginan */
     position: fixed;
     top: 0;
-    left: -40;
+    left: -90px;
     width: 100%;
     z-index: 1000;
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 24px;
+    padding: 16px;
     border-bottom: 1px solid #ddd;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -399,4 +382,98 @@ body {
 #cardcontainer {
     padding-bottom: 50px !important; /* Menambah ruang di dalam container */
     min-height: 400px !important; /* Mengatur tinggi minimum container */
+}
+
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        width: 250px; /* Sidebar normal */
+        left: -250px; /* Awalnya tersembunyi */
+    }
+    .sidebar.active {
+        left: 0; /* Muncul saat diaktifkan */
+    }
+    .cards {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .why-choose-us-cards, .information-card, .card-container{
+        grid-template-columns: repeat(2, 1fr); /* Dua kolom */
+    
+    }
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Dua kolom dengan lebar sama */
+        gap: 20px; /* Jarak antar card */
+    }
+    .information-card > *:nth-last-child(1):nth-child(odd) {
+        grid-column: span 2; /* Jika elemen terakhir ganjil, lebarkan ke 2 kolom */
+        justify-self: center; /* Pusatkan */
+        width: 50%;
+    }
+    .card{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 750px) {
+    .sidebar {
+        height: auto;
+        left: -100%; /* Tetap tersembunyi sampai diaktifkan */
+        top: 0;
+        bottom: 0;
+        transition: left 0.3s ease;
+    }
+    .sidebar.active {
+        left: 0; /* Muncul saat diaktifkan */
+    }
+    .main-content {
+        margin-left: 0 !important; /* Tidak bergeser meski sidebar muncul */
+    }
+    .cards {
+        flex-direction: column; /* Susun card secara vertikal */
+    }
+    .card-container {
+        display: flex;
+        flex-direction: column; /* Mengatur item ke arah vertikal */
+        align-items: center; /* Pusatkan item jika diperlukan */
+    }
+    .card {
+        width: 90%; /* Ambil hampir seluruh lebar layar */
+        max-width: 400px; /* Batasi ukuran maksimum */
+    }
+    .why-choose-us-card, .information-card {
+        grid-template-columns: 1fr; /* Satu kolom */
+    }
+    .toggle-btn {
+        left: 10px;
+        padding: 8px 12px !important; /* Pakai !important jika perlu */
+    }
+    .information-card > *:nth-last-child(1):nth-child(odd) {
+        grid-column: auto; /* Hapus aturan elemen terakhir di tengah */
+        justify-self: normal;
+        width: auto;
+    }
+}
+@media screen and (max-width: 500px) {
+    .why-choose-us-cards {
+        display: flex;
+        flex-direction: column; /* Mengatur item ke arah vertikal */
+        align-items: center; /* Pusatkan item jika diperlukan */
+    }
+
+    .why-choose-us-cards div {
+        width: 90%; /* Pastikan elemen memenuhi lebar */
+        text-align: center; /* Pusatkan teks jika perlu */
+    }
+    .header{
+        left: -85px;
+    }
+    .logo-container{
+        margin-left: 55px; /* Ubah nilai sesuai keinginan */
+    }
+}
+@media screen and (max-height: 400px) {
+    .sidebar ul li a {
+    padding: 8px;
+    margin-top: -10px;
+    }    
 }

@@ -25,100 +25,68 @@ $query = "SELECT * FROM users WHERE reset_token = '$token' AND reset_token_expir
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) == 0) {
-    // Token tidak valid
     die("Invalid or expired token.");
 }
 
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fishervice - Reset Password</title>
+    <title>Reset Password</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #e0f7fa;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: url('background/Dashboard%20Fishervice.mp4') no-repeat center center fixed;
-            background-size: cover;
-        }
-        .reset-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-        }
-        .reset-container h2 {
-            color: #1e88e5;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .reset-container form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .reset-container label {
-            font-size: 14px;
-            color: #555;
-            text-align: left;
-        }
-        .reset-container input {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .reset-container button {
-            background-color: #1e88e5;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .reset-container button:hover {
-            background-color: #1565c0;
-        }
-        .reset-container .back-link {
-            display: block;
-            margin-top: 10px;
-            color: #555;
-            font-size: 14px;
-            text-decoration: none;
-        }
-        .reset-container .back-link:hover {
-            color: #1e88e5;
-        }
-    </style>
+    <link rel="stylesheet" href="css/resetpassform.css">
 </head>
 <body>
-    <div class="reset-container">
-        <h2>Reset Your Password</h2>
-        <form method="POST" action="reset_password.php">
-            <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
-            <label for="password">New Password:</label>
-            <input type="password" id="password" name="password" required>
-            <label for="cpassword">Confirm Password:</label>
-            <input type="password" id="cpassword" name="cpassword" required>
-            <button type="submit">Reset Password</button>
-        </form>
-        <a class="back-link" href="signin.html"><i class="fas fa-arrow-left"></i> Back to Sign In</a>
+    <div class="main-content">
+        <video autoplay muted loop>
+            <source src="background/Dashboard Fishervice.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="content">
+            <div class="header">
+                <h1>
+                <a href="javascript:void(0);" onclick="redirectToSignIn()" style="color: black; text-decoration: none;">
+                    <i class="fas fa-arrow-left"></i>
+                    <span class="back-text">Back</span>
+                </a>
+                    <img src="https://iili.io/2Z190Cl.png" alt="Fishervice Logo"/>
+                    Fishervice
+                </h1>
+                <div class="user">Admin Fishervice</div>
+            </div>
+        </div>
+        <div class="pH">
+            <div class="cards">
+                <div class="card">
+                    <h3>Reset Your Password</h3>
+                    <div class="reset-form">
+                        <form method="POST" action="reset_password.php">
+                            <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
+                            <input type="password" id="password" name="password" placeholder="New Password" required>
+                            <input type="password" id="cpassword" name="cpassword" placeholder="Confirm Password" required>
+                            <button type="submit">Reset Password</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer">
+                <p><i class="fas fa-envelope"></i> Email: Fishervice4@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Location: Telkom University, Bandung, Jawa Barat</p>
+                <p><i class="fas fa-phone"></i> Phone: 089520701494 (Muhammad Hasbi Nurhadi)</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function redirectToSignIn() {
+            window.location.href = 'signin.html'; // Mengarahkan pengguna ke signin.html
+        }
+    </script>
+</body>
+</html>
+            </div>
+        </div>
     </div>
 </body>
 </html>

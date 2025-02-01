@@ -35,17 +35,22 @@ document.getElementById("signupButton").addEventListener("click", function() {
         // Toggle kelas 'active' pada sidebar
         sidebar.classList.toggle('active');
 
-        // Pindahkan tombol ke sisi lain saat sidebar terbuka
-        if (sidebar.classList.contains('active')) {
-            toggleBtn.style.left = '270px'; // Sesuaikan dengan lebar sidebar
+        if (window.matchMedia("(max-width: 750px)").matches) {
+            // Jika layar ≤ 750px, hanya tampil & sembunyi tanpa menggeser konten
+            if (sidebar.classList.contains('active')) {
+                toggleBtn.style.left = '260px'; // Sesuaikan dengan lebar sidebar
+            } else {
+                toggleBtn.style.left = '10px';
+            }
         } else {
-            toggleBtn.style.left = '20px';
-        }
-        // Geser main content
-        if (sidebar.classList.contains('active')) {
-            mainContent.style.marginLeft = '250px'; // Sesuaikan dengan lebar sidebar
-        } else {
-            mainContent.style.marginLeft = '0';
+            // Jika layar > 750px, gunakan logika geser seperti sebelumnya
+            if (sidebar.classList.contains('active')) {
+                toggleBtn.style.left = '270px';
+                mainContent.style.marginLeft = '250px';
+            } else {
+                toggleBtn.style.left = '20px';
+                mainContent.style.marginLeft = '0';
+            }
         }
     });
     // JavaScript untuk menambahkan kelas 'active' ke item sidebar yang diklik

@@ -184,3 +184,73 @@ body {
     opacity: 0.5; /* Menjadikan tombol lebih redup */
     pointer-events: none; /* Mencegah interaksi dengan tombol */
     }
+    /* Responsiveness for tablets and smaller devices */
+@media screen and (max-width: 1024px) {
+    .login-box img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .login-box h2 {
+        font-size: 28px;
+    }
+}
+
+/* Adjustments for screens with limited height */
+@media screen and (max-height: 600px) {
+    .login-box {
+        height: auto;
+    }
+
+    .login-box img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .login-box h2 {
+        font-size: 18px;
+    }
+
+    .login-box input {
+        font-size: 12px;
+        padding: 10px;
+        margin: 5px 0;
+    }
+
+    .login-box button {
+        width: 20%;
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
+/* Adjustments for screens with limited height */
+@media screen and (max-height: 400px) {
+    .login-box {
+        height: auto;
+    }
+
+    .login-box img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .login-box h2 {
+        font-size: 18px;
+    }
+
+    .login-box input {
+        font-size: 12px;
+        padding: 8px;
+        margin: 5px 0;
+    }
+
+    .login-box button {
+        font-size: 12px;
+        padding: 5px;
+    }
+    .login-box h2 {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+}
