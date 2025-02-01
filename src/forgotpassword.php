@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
         $sql_update = "UPDATE users SET reset_token = '$token', reset_token_expiry = '$expiry' WHERE email = '$email'";
 
         if (mysqli_query($conn, $sql_update)) {
-            $resetLink = "http://localhost:8002/reset_password_form.php?token=$token";
+            $resetLink = "http://3.24.217.175:8002/reset_password_form.php?token=$token";
 
             $mail = new PHPMailer(true);
             try {

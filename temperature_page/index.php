@@ -1,9 +1,16 @@
 <?php
 session_start();
 
-// Cek apakah pengguna sudah login (data fullname ada dalam session)
-$fullname = $_SESSION['fullname'] ?? 'Guest';
-
+// Ambil data dari sessionStorage menggunakan JavaScript
+if (isset($_SESSION['fullname']) && isset($_SESSION['email'])) {
+    $fullname = $_SESSION['fullname'];
+    $email = $_SESSION['email'];
+    // Proses data lebih lanjut
+} else {
+    // Redirect ke halaman login jika data tidak ada
+    header('Location: http://3.24.217.175:8002/signin.html');
+    exit();
+}
 ?>
 <html>
  <head>
@@ -265,7 +272,7 @@ loadInitialData();
 
 document.getElementById('backButton').addEventListener('click', function() {
     console.log('Tombol Back diklik'); // Log ini untuk debugging
-    window.location.href = 'http://13.236.116.101:8002/dashboardlogin.php'; // URL yang sesuai
+    window.location.href = 'http://3.24.217.175:8002/dashboardlogin.php'; // URL yang sesuai
 });
 
 </script>

@@ -8,16 +8,16 @@ if (isset($_SESSION['fullname']) && isset($_SESSION['email'])) {
     // Proses data lebih lanjut
 } else {
     // Redirect ke halaman login jika data tidak ada
-    header('Location: ../signin.html');
+    header('Location: http://3.24.217.175:8002/signin.html');
     exit();
 }
 ?>
 <html>
 <head>
-    <title>Fishervice - History pH</title>
+    <title>Fishervice - History Turbidity</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="HistoryPh.css">
+    <link rel="stylesheet" href="HistoryTurbidity.css">
   <!-- Firebase SDK for older versions (if not using ES modules) -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -28,17 +28,16 @@ if (isset($_SESSION['fullname']) && isset($_SESSION['email'])) {
     <div class="main-content">
         <!-- Background video -->
         <video autoplay muted loop>
-            <source src="../background/Dashboard Fishervice.mp4" type="video/mp4">
+            <source src="background/background.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
 
         <div class="content">
             <div class="header">
                 <h1>
-                    <a href="javascript:void(0);" onclick="saveAndRedirect('../dashboardlogin.php')" style="color: black; text-decoration: none;">
-                        <i class="fas fa-arrow-left"></i>
-                        <span class="back-text">Back</span>
-                    </a>
+                    <button id="backButton" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                    <span class="back-text">Back</span> </button>
                     <img alt="Fishervice Logo" src="https://gcdnb.pbrd.co/images/zFDCP4zQaltQ.png?o=1" />
                     Fishervice
                 </h1>
@@ -54,7 +53,7 @@ if (isset($_SESSION['fullname']) && isset($_SESSION['email'])) {
             </div>
 
             <div class="pH">
-                <h2 style="text-align: center; font-size: 20px;">History pH</h2>
+                <h2 style="text-align: center; font-size: 20px;">History Turbidity</h2>
                 <div class="cards">
                     <div class="card">
                         <!-- Tabel History -->
@@ -64,7 +63,7 @@ if (isset($_SESSION['fullname']) && isset($_SESSION['email'])) {
                                     <tr>
                                         <th style="padding: 10px; border: 1px solid #ddd;">Tanggal</th>
                                         <th style="padding: 10px; border: 1px solid #ddd;">Waktu</th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;">Data pH</th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;">Data Turbidity</th>
                                     </tr>
                                 </thead>
                                 <tbody id="historyBody">
@@ -99,12 +98,12 @@ if (isset($_SESSION['fullname']) && isset($_SESSION['email'])) {
 
 // Konfigurasi Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyDrvM0uqhKR25Qd8va-5Ts_5zcMPYMv0h8",
-  authDomain: "ph-container-73dbc.firebaseapp.com",
-  projectId: "ph-container-73dbc",
-  storageBucket: "ph-container-73dbc.firebasestorage.app",
-  messagingSenderId: "1092227667658",
-  appId: "1:1092227667658:web:06039be24f9d8cdbd60633"
+  apiKey: "AIzaSyA7LZUxNcMybJmrlndExNXHZhlO2Yy1yAo",
+  authDomain: "ntu-container.firebaseapp.com",
+  projectId: "ntu-container",
+  storageBucket: "ntu-container.firebasestorage.app",
+  messagingSenderId: "307669121895",
+  appId: "1:307669121895:web:a1b0c2e8ae49104fa3cdc2"
 };
 
         // Inisialisasi Firebase
@@ -134,7 +133,7 @@ const firebaseConfig = {
                     row.innerHTML = `
                         <td style="padding: 10px; border: 1px solid #ddd;">${formatDate(data.timestamp)}</td>
                         <td style="padding: 10px; border: 1px solid #ddd;">${formatTime(data.timestamp)}</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">${data.pHValue.toFixed(2)}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${data.NTU.toFixed(2)}</td>
                     `;
                     historyBody.appendChild(row);
                 });
@@ -166,18 +165,10 @@ const firebaseConfig = {
         // Panggil fungsi untuk memuat data saat halaman dimuat
         loadHistoryData();
 
-        function saveAndRedirect(url) {
-            var fullname = '<?php echo $_SESSION['fullname']; ?>';
-            var email = '<?php echo $_SESSION['email']; ?>';
-
-            if (fullname && email) {
-                sessionStorage.setItem('fullname', fullname);
-                sessionStorage.setItem('email', email);
-                window.location.href = url;
-            } else {
-                window.location.href = 'signin.html';
-            }
-        }
+        document.getElementById('backButton').addEventListener('click', function() {
+        console.log('Tombol Back diklik'); // Log ini untuk debugging
+        window.location.href = 'http://3.24.217.175:8002/dashboardlogin.php'; // URL yang sesuai
+    });
     </script>
 </body>
 </html>

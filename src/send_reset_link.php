@@ -165,7 +165,7 @@ if ($conn->connect_error) {
                     $sql = "UPDATE users SET reset_token = '$token', reset_token_expiry = '$expiry' WHERE email = '$email'";
 
                     if (mysqli_query($conn, $sql)) {
-                        $resetLink = "http://13.236.116.101:8002/reset_password_form.php?token=$token";
+                        $resetLink = "http://3.24.217.175:8002/reset_password_form.php?token=$token";
 
                         $mail = new PHPMailer(true);
                         try {
