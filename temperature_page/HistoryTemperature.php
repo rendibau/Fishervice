@@ -8,12 +8,14 @@ if (isset($_SESSION['fullname']) && isset($_SESSION['email'])) {
     // Proses data lebih lanjut
 } else {
     // Redirect ke halaman login jika data tidak ada
-    header('Location: http://3.24.217.175:8002/signin.html');
+    header('Location: http://localhost:8002/signin.html');
     exit();
 }
 ?>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fishervice - History Temperature</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -35,35 +37,35 @@ if (isset($_SESSION['fullname']) && isset($_SESSION['email'])) {
         <div class="content">
             <div class="header">
                 <h1>
-                 <button id="backButton" class="back-button">
+                 <div id="backButton" class="back-button">
                  <i class="fas fa-arrow-left"></i>
-                 <span class="back-text">Back</span> </button>
-                    <img alt="Fishervice Logo" src="https://gcdnb.pbrd.co/images/zFDCP4zQaltQ.png?o=1" />
+                 <span class="back-text">Back</span> </div>
+                    <img alt="Fishervice Logo" src="https://iili.io/2Z190Cl.png" />
                     Fishervice
                 </h1>
-                <div class="user" style="white-space: nowrap;">
+                <div class="user">
                     Hi, <?php echo htmlspecialchars($fullname); ?>!
                 </div>
             </div>
 
             <!-- Search bar untuk mencari data berdasarkan tanggal -->
-            <div class="search-bar" style="text-align: center; margin: 20px 0;">
-                <input type="text" id="searchDate" placeholder="Cari berdasarkan tanggal (yyyy-mm-dd)" style="padding: 10px; font-size: 16px; width: 250px;">
-                <button onclick="searchByDate()" style="padding: 10px; font-size: 16px;">Cari</button>
+                    <div class="search-bar">
+                <input type="text" id="searchDate" placeholder="Cari berdasarkan tanggal (yyyy-mm-dd)">
+                <button onclick="searchByDate()">Cari</button>
             </div>
-
+        
             <div class="pH">
-                <h2 style="text-align: center; font-size: 20px;">History Temperature</h2>
+                <h2>History Temperature</h2>
                 <div class="cards">
                     <div class="card">
                         <!-- Tabel History -->
                         <div class="history">
-                            <table style="width: 100%; border-collapse: collapse; text-align: center; background-color: #ffffff; margin: 20px 0; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-                                <thead style="background-color: #29b6f6; color: white;">
+                            <table>
+                                <thead>
                                     <tr>
-                                        <th style="padding: 10px; border: 1px solid #ddd;">Tanggal</th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;">Waktu</th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;">Data Temperature</th>
+                                        <th>Tanggal</th>
+                                        <th>Waktu</th>
+                                        <th>Data Temperature</th>
                                     </tr>
                                 </thead>
                                 <tbody id="historyBody">
@@ -74,7 +76,7 @@ if (isset($_SESSION['fullname']) && isset($_SESSION['email'])) {
                     </div>
                 </div>
             </div>
-        </div>
+
 
         <div class="footer">
             <p>
@@ -167,7 +169,7 @@ const firebaseConfig = {
 
         document.getElementById('backButton').addEventListener('click', function() {
         console.log('Tombol Back diklik'); // Log ini untuk debugging
-        window.location.href = 'http://3.24.217.175:8002/dashboardlogin.php'; // URL yang sesuai
+        window.location.href = 'http://localhost:8002/dashboardlogin.php'; // URL yang sesuai
     });
     </script>
 </body>

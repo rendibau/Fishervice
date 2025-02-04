@@ -8,12 +8,14 @@ if (isset($_SESSION['fullname']) && isset($_SESSION['email'])) {
     // Proses data lebih lanjut
 } else {
     // Redirect ke halaman login jika data tidak ada
-    header('Location: http://3.24.217.175:8002/signin.html');
+    header('Location: http://localhost:8002/signin.html');
     exit();
 }
 ?>
 <html>
  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
    Fishervice
   </title>
@@ -36,10 +38,10 @@ if (isset($_SESSION['fullname']) && isset($_SESSION['email'])) {
   <div class="content">
    <div class="header">
     <h1>
-    <button id="backButton" class="back-button">
+    <div id="backButton" class="back-button">
      <i class="fas fa-arrow-left"></i>
-     <span class="back-text">Back</span> </button>
-     <img alt="Fishervice Logo" src="https://gcdnb.pbrd.co/images/zFDCP4zQaltQ.png?o=1"/>
+     <span class="back-text">Back</span> </div>
+     <img alt="Fishervice Logo" src="https://iili.io/2Z190Cl.png"/>
      Fishervice
     </h1>
     <div class="user" style="white-space: nowrap;"> 
@@ -56,12 +58,12 @@ if (isset($_SESSION['fullname']) && isset($_SESSION['email'])) {
             <canvas id="pHChart" width="400" height="200"></canvas>
         
             <!-- pH saat ini -->
-            <h3 style="font-size: 32px; font-weight: bold; color: #29b6f6; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px;">
+            <h3 class="pH-title">
                 pH saat ini
             </h3>
             
             <!-- Nilai pH -->
-            <p id="currentPHValue" style="font-size: 40px; font-weight: bold; color: white; background-color: #29b6f6; padding: 15px 30px; border-radius: 50px; display: inline-block; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); margin-top: 10px;">
+            <p id="currentPHValue" class="pH-value">
                 0
             </p>       
      </div>
@@ -272,7 +274,7 @@ loadInitialData();
 
     document.getElementById('backButton').addEventListener('click', function() {
     console.log('Tombol Back diklik'); // Log ini untuk debugging
-    window.location.href = 'http://3.24.217.175:8002/dashboardlogin.php'; // URL yang sesuai
+    window.location.href = 'http://localhost:8002/dashboardlogin.php'; // URL yang sesuai
 });
 </script>
  </body>

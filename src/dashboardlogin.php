@@ -115,17 +115,17 @@
         <div class="analyst-cards">
             <!-- Link to Temperature page -->
             <div class="analyst-card">
-            <button id="sendDataBtn4" class="no-link-style" style="color: black; background: none; border: none; cursor: pointer;">
+            <button id="sendDataBtn4" class="no-link-style full-button" style="color: black; background: none; border: none; cursor: pointer;">
                     <h3>Temperature</h3>
             </div>
             <!-- Link to pH page -->
             <div class="analyst-card">
-            <button id="sendDataBtn5" class="no-link-style" style="color: black; background: none; border: none; cursor: pointer;">
+            <button id="sendDataBtn5" class="no-link-style full-button" style="color: black; background: none; border: none; cursor: pointer;">
                     <h3>pH</h3>
             </div>
             <!-- Link to Turbidity page -->
             <div class="analyst-card">
-            <button id="sendDataBtn6" class="no-link-style" style="color: black; background: none; border: none; cursor: pointer;">
+            <button id="sendDataBtn6" class="no-link-style full-button" style="color: black; background: none; border: none; cursor: pointer;">
                     <h3>Turbidity</h3>
             </div>
         </div>
@@ -236,7 +236,7 @@
     });
 // Event listener untuk tombol pertama
 document.getElementById('sendDataBtn1').addEventListener('click', function() {
-    fetch('http://3.24.217.175:8006/receive_user_data.php', {
+    fetch('http://localhost:8006/receive_user_data.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -260,7 +260,7 @@ document.getElementById('sendDataBtn1').addEventListener('click', function() {
             const data = JSON.parse(text); // Coba parse respons sebagai JSON
             console.log("Received data:", data);
             if (data.status === 'success') {
-                window.location.href = 'http://3.24.217.175:8006/index.php'; // Arahkan ke halaman utama
+                window.location.href = 'http://localhost:8006/index.php'; // Arahkan ke halaman utama
             } else {
                 alert(data.message);
             }
@@ -282,7 +282,7 @@ document.getElementById('sendDataBtn1').addEventListener('click', function() {
 
 // Event listener untuk tombol kedua
 document.getElementById('sendDataBtn2').addEventListener('click', function() {
-    fetch('http://3.24.217.175:8004/receive_user_data.php', {
+    fetch('http://localhost:8004/receive_user_data.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -306,7 +306,7 @@ document.getElementById('sendDataBtn2').addEventListener('click', function() {
             const data = JSON.parse(text);
             console.log("Received data:", data);
             if (data.status === 'success') {
-                window.location.href = 'http://3.24.217.175:8004/index.php'; // Arahkan ke halaman utama
+                window.location.href = 'http://localhost:8004/index.php'; // Arahkan ke halaman utama
             } else {
                 alert(data.message);
             }
@@ -328,7 +328,7 @@ document.getElementById('sendDataBtn2').addEventListener('click', function() {
 
 // Event listener untuk tombol ketiga
 document.getElementById('sendDataBtn3').addEventListener('click', function() {
-    fetch('http://3.24.217.175:8005/receive_user_data.php', {
+    fetch('http://localhost:8005/receive_user_data.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -352,7 +352,7 @@ document.getElementById('sendDataBtn3').addEventListener('click', function() {
             const data = JSON.parse(text);
             console.log("Received data:", data);
             if (data.status === 'success') {
-                window.location.href = 'http://3.24.217.175:8005/index.php'; // Arahkan ke halaman utama
+                window.location.href = 'http://localhost:8005/index.php'; // Arahkan ke halaman utama
             } else {
                 alert(data.message);
             }
@@ -374,7 +374,7 @@ document.getElementById('sendDataBtn3').addEventListener('click', function() {
 
 // Event listener untuk tombol keempat
 document.getElementById('sendDataBtn4').addEventListener('click', function() {
-    fetch('http://3.24.217.175:8006/receive_user_data.php', {
+    fetch('http://localhost:8006/receive_user_data.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -398,7 +398,7 @@ document.getElementById('sendDataBtn4').addEventListener('click', function() {
             const data = JSON.parse(text); // Coba parse respons sebagai JSON
             console.log("Received data:", data);
             if (data.status === 'success') {
-                window.location.href = 'http://3.24.217.175:8006/HistoryTemperature.php'; // Arahkan ke halaman utama
+                window.location.href = 'http://localhost:8006/HistoryTemperature.php'; // Arahkan ke halaman utama
             } else {
                 alert(data.message);
             }
@@ -420,7 +420,7 @@ document.getElementById('sendDataBtn4').addEventListener('click', function() {
 
 // Event listener untuk tombol kelima
 document.getElementById('sendDataBtn5').addEventListener('click', function() {
-    fetch('http://3.24.217.175:8004/receive_user_data.php', {
+    fetch('http://localhost:8004/receive_user_data.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -444,7 +444,7 @@ document.getElementById('sendDataBtn5').addEventListener('click', function() {
             const data = JSON.parse(text); // Coba parse respons sebagai JSON
             console.log("Received data:", data);
             if (data.status === 'success') {
-                window.location.href = 'http://3.24.217.175:8004/HistoryPh.php'; // Arahkan ke halaman utama
+                window.location.href = 'http://localhost:8004/HistoryPh.php'; // Arahkan ke halaman utama
             } else {
                 alert(data.message);
             }
@@ -466,7 +466,7 @@ document.getElementById('sendDataBtn5').addEventListener('click', function() {
 
 // Event listener untuk tombol keenam
 document.getElementById('sendDataBtn6').addEventListener('click', function() {
-    fetch('http://3.24.217.175:8005/receive_user_data.php', {
+    fetch('http://localhost:8005/receive_user_data.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -490,7 +490,7 @@ document.getElementById('sendDataBtn6').addEventListener('click', function() {
             const data = JSON.parse(text); // Coba parse respons sebagai JSON
             console.log("Received data:", data);
             if (data.status === 'success') {
-                window.location.href = 'http://3.24.217.175:8005/HistoryTurbidity.php'; // Arahkan ke halaman utama
+                window.location.href = 'http://localhost:8005/HistoryTurbidity.php'; // Arahkan ke halaman utama
             } else {
                 alert(data.message);
             }

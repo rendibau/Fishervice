@@ -129,7 +129,7 @@ body {
 @media (max-width: 600px) {
     .card {
         width: 60%;
-        margin-top: 140px;
+        margin-top: 200px;
     }
     .card h3 {
         font-size: 28px;

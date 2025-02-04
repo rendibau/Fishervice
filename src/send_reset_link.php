@@ -136,7 +136,7 @@ if ($conn->connect_error) {
                         <i class="fas fa-arrow-left"></i>
                         <span class="back-text">Back</span>
                     </a>
-                    <img alt="Fishervice Logo" src="https://gcdnb.pbrd.co/images/zFDCP4zQaltQ.png?o=1" />
+                    <img alt="Fishervice Logo" src="https://iili.io/2Z190Cl.png" />
                     Fishervice
                 </h1>
                 <div class="user">Admin Fishervice</div>
@@ -165,7 +165,7 @@ if ($conn->connect_error) {
                     $sql = "UPDATE users SET reset_token = '$token', reset_token_expiry = '$expiry' WHERE email = '$email'";
 
                     if (mysqli_query($conn, $sql)) {
-                        $resetLink = "http://3.24.217.175:8002/reset_password_form.php?token=$token";
+                        $resetLink = "http://localhost:8002/reset_password_form.php?token=$token";
 
                         $mail = new PHPMailer(true);
                         try {

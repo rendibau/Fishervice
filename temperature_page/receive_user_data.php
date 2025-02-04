@@ -1,5 +1,5 @@
 <?php 
-header("Access-Control-Allow-Origin: http://3.24.217.175:8002");
+header("Access-Control-Allow-Origin: http://localhost:8002");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 

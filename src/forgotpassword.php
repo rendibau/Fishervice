@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
         $sql_update = "UPDATE users SET reset_token = '$token', reset_token_expiry = '$expiry' WHERE email = '$email'";
 
         if (mysqli_query($conn, $sql_update)) {
-            $resetLink = "http://3.24.217.175:8002/reset_password_form.php?token=$token";
+            $resetLink = "http://localhost:8002/reset_password_form.php?token=$token";
 
             $mail = new PHPMailer(true);
             try {
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'fishervice4@gmail.com';
-                $mail->Password = 'xkqhagrxqfkppdec';
+                $mail->Password = '*';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
@@ -107,9 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
             <img alt="Fishervice Logo" src="https://iili.io/2Z190Cl.png" />
             Fishervice
         </h1>
-        <div class="user" style="white-space: nowrap;"> 
-         Admin Fishervice
-        </div>
+        <div class="user">Admin Fishervice</div>
        </div>
     </div>
     <div class="pH">
