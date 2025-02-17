@@ -8,8 +8,8 @@
 #include <time.h>  // Library untuk NTP
 
 // Ganti dengan kredensial WiFi kamu
-#define WIFI_SSID "HelmiFarmMandiri"
-#define WIFI_PASSWORD "313354Okehh"
+#define WIFI_SSID "JOGLOBTP"
+#define WIFI_PASSWORD ""
 
 // Ganti dengan Firebase Project credentials untuk masing-masing Firestore
 #define FIRESTORE_RESULT_PROJECT_ID "fishervice-result"
